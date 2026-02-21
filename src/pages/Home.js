@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle, Users, Award } from 'lucide-react';
+import LightRays from '../components/ui/LightRays';
 import DarkVeil from '../components/ui/DarkVeil';
 
 const Counter = ({ end, duration = 2 }) => {
@@ -49,13 +50,33 @@ const Home = () => {
             initial={{ y: 50, opacity: 0, rotateX: -30 }}
             animate={{ y: 0, opacity: 1, rotateX: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-white font-montserrat font-black text-5xl md:text-7xl mb-6"
+            className="font-montserrat font-black text-5xl md:text-7xl mb-6 relative"
             style={{ 
-              textShadow: '4px 8px 16px rgba(0,0,0,0.6), 0 0 40px rgba(59,130,246,0.4)',
-              transformStyle: 'preserve-3d'
+              transformStyle: 'preserve-3d',
+              letterSpacing: '0.02em'
             }}
           >
-            BXL PROJECTS
+            <span style={{
+              position: 'relative',
+              display: 'inline-block',
+              color: '#E5E7EB',
+              textShadow: `
+                0 1px 0 #374151,
+                0 2px 0 #1F2937,
+                0 3px 0 #111827,
+                0 4px 0 #0F172A,
+                0 5px 0 #020617,
+                0 6px 1px rgba(0,0,0,.3),
+                0 0 5px rgba(0,0,0,.2),
+                0 1px 3px rgba(0,0,0,.5),
+                0 3px 5px rgba(0,0,0,.4),
+                0 5px 10px rgba(0,0,0,.35),
+                0 10px 20px rgba(0,0,0,.3),
+                0 20px 40px rgba(0,0,0,.25)
+              `
+            }}>
+              BXL PROJECTS
+            </span>
           </motion.h1>
 
           <motion.h2
@@ -120,34 +141,80 @@ const Home = () => {
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30, rotateX: -20 }}
-                animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{ delay: 1.5 + index * 0.2 }}
-                whileHover={{ y: -8, rotateY: 5 }}
-                className="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-6 border border-white border-opacity-20"
+                animate={{
+                  opacity: 1,
+                  y: [0, -10, 0],
+                  rotateX: 0,
+                  transition: {
+                    opacity: { duration: 0.8, delay: 1.5 + index * 0.2 },
+                    rotateX: { duration: 0.8, delay: 1.5 + index * 0.2 },
+                    y: {
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 1.5 + index * 0.5
+                    }
+                  }
+                }}
+                whileHover={{ y: -8, rotateY: 5, scale: 1.05 }}
+                className="rounded-xl p-6 border border-white border-opacity-30"
                 style={{ 
-                  boxShadow: '0 20px 40px rgba(0,0,0,0.4), inset 0 -5px 15px rgba(0,0,0,0.2)',
+                  background: 'rgba(255, 255, 255, 0.15)',
+                  backdropFilter: 'blur(12px)',
+                  WebkitBackdropFilter: 'blur(12px)',
+                  boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.4)',
                   transformStyle: 'preserve-3d'
                 }}
               >
-                <stat.icon className="w-12 h-12 text-white mx-auto mb-4" style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.5))' }} />
-                <div className="text-4xl font-montserrat font-black text-white mb-2" style={{ textShadow: '3px 6px 10px rgba(0,0,0,0.6)' }}>
+                <stat.icon className="w-12 h-12 text-white mx-auto mb-4" style={{ filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.8))' }} />
+                <div className="text-5xl font-montserrat font-black text-white mb-2" style={{ 
+                  textShadow: `
+                    0 1px 0 #9CA3AF,
+                    0 2px 0 #6B7280,
+                    0 3px 0 #4B5563,
+                    0 4px 0 #374151,
+                    0 5px 0 #1F2937,
+                    0 6px 1px rgba(0,0,0,.5),
+                    0 0 8px rgba(0,0,0,.3),
+                    0 2px 5px rgba(0,0,0,.6),
+                    0 5px 10px rgba(0,0,0,.5),
+                    0 10px 20px rgba(0,0,0,.4),
+                    0 20px 40px rgba(0,0,0,.3)
+                  `
+                }}>
                   <Counter end={stat.value} />
                   {stat.suffix}
                 </div>
-                <div className="text-white font-opensans">{stat.label}</div>
+                <div className="text-white font-opensans font-semibold" style={{ textShadow: '2px 4px 8px rgba(0,0,0,0.6)' }}>{stat.label}</div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 relative overflow-hidden bg-black">
+        <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 0 }}>
+          <LightRays
+            raysOrigin="top-center"
+            raysColor="#2563EB"
+            raysSpeed={3}
+            lightSpread={0.8}
+            rayLength={7}
+            followMouse={true}
+            mouseInfluence={0.5}
+            noiseAmount={0}
+            distortion={0}
+            pulsating={true}
+            fadeDistance={4}
+            saturation={2.5}
+          />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-montserrat font-black text-charcoal text-center mb-12"
+            className="text-4xl md:text-5xl font-montserrat font-black text-white text-center mb-12"
           >
             Featured Work
           </motion.h2>
