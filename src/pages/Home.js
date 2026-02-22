@@ -59,7 +59,7 @@ const Home = () => {
             <span style={{
               position: 'relative',
               display: 'inline-block',
-              color: '#D1D5DB',
+              color: '#9CA3AF',
               textShadow: `
                 0 1px 0 #374151,
                 0 2px 0 #1F2937,
@@ -96,7 +96,7 @@ const Home = () => {
             className="text-white font-opensans text-base xs:text-lg sm:text-xl md:text-2xl mb-2 sm:mb-4"
             style={{ textShadow: '2px 4px 8px rgba(0,0,0,0.5)' }}
           >
-            Crafting Digital Excellence
+            Crafting Digital Solutions
           </motion.h3>
 
           <motion.p
@@ -128,7 +128,7 @@ const Home = () => {
                 restDelta: 0.001
               }}
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
+              whileTap={{ scale: 0.98 }} 
               style={{ 
                 transformStyle: 'preserve-3d',
                 boxShadow: '0 10px 30px rgba(30,58,138,0.6), inset 0 -4px 8px rgba(0,0,0,0.3)'

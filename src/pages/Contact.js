@@ -314,7 +314,7 @@ const Contact = () => {
           className="text-center mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-600"
         >
           <p className="text-gray-300 font-opensans text-sm sm:text-base">
-            © 2025 BXL PROJECTS. All rights reserved.
+            © 2026 BXL PROJECTS. All rights reserved.
           </p>
         </motion.div>
       </div>

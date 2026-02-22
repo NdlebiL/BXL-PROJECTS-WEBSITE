@@ -6,10 +6,10 @@ import Threads from '../components/ui/Threads';
 
 const About = () => {
   const timeline = [
-    { year: '2023', event: 'BXL Projects Founded', description: 'Started with a vision to deliver excellence in digital solutions' },
-    { year: '2023', event: 'First Major Project', description: 'Launched Give Us Transport Solutions - R299 shuttle booking system' },
-    { year: '2024', event: 'Expanding Services', description: 'Added API development, WhatsApp automation, and SEO services' },
-    { year: '2024', event: 'Growing Portfolio', description: 'Serving 2+ clients with 5+ successful projects delivered' },
+    { year: '2025', event: 'BXL Projects Founded', description: 'Started with a vision to deliver excellence in digital solutions' },
+    { year: '2026', event: 'First Project', description: 'Launched, Give Us Transport Solutions - Shuttle service company with unlimited transport solutions - Enterprise-grade websites' },
+    { year: '2026', event: 'Expanding Services', description: ' Full-Stack Web Applications, System Architecture & Design, Mobile App Development e.t.c' },
+    { year: '2026', event: 'Growing Portfolio', description: 'Serving 2+ clients with 5+ successful projects delivered' },
   ];
 
   const values = [
