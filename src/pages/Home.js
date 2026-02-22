@@ -50,7 +50,7 @@ const Home = () => {
             initial={{ y: 50, opacity: 0, rotateX: -30 }}
             animate={{ y: 0, opacity: 1, rotateX: 0 }}
             transition={{ duration: 0.8 }}
-            className="font-montserrat font-black text-5xl md:text-7xl mb-6 relative"
+            className="font-montserrat font-black text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-4 sm:mb-6 relative"
             style={{ 
               transformStyle: 'preserve-3d',
               letterSpacing: '0.02em'
@@ -83,7 +83,7 @@ const Home = () => {
             initial={{ opacity: 0, z: -100 }}
             animate={{ opacity: 1, z: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-white font-opensans text-2xl md:text-4xl mb-4"
+            className="text-white font-opensans text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-2 sm:mb-4"
             style={{ textShadow: '3px 6px 12px rgba(0,0,0,0.5)' }}
           >
             Bukhanye Xcellence Legacy
@@ -93,7 +93,7 @@ const Home = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.6, duration: 0.8 }}
-            className="text-white font-opensans text-xl md:text-2xl mb-4"
+            className="text-white font-opensans text-base xs:text-lg sm:text-xl md:text-2xl mb-2 sm:mb-4"
             style={{ textShadow: '2px 4px 8px rgba(0,0,0,0.5)' }}
           >
             Crafting Digital Excellence
@@ -103,7 +103,7 @@ const Home = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.9, duration: 0.8 }}
-            className="text-white font-opensans text-lg mb-12"
+            className="text-white font-opensans text-sm sm:text-base md:text-lg mb-8 sm:mb-12"
           >
             East London, Eastern Cape, South Africa
           </motion.p>
@@ -112,31 +112,64 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 sm:mb-16 px-4"
           >
-            <button
+            <motion.button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-navy hover:bg-blueGlow text-white font-montserrat font-bold px-8 py-4 rounded-lg transition-all transform hover:scale-105"
+              className="bg-navy hover:bg-blueGlow text-white font-montserrat font-bold px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-lg transition-all relative overflow-hidden group text-sm sm:text-base"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              animate={{
+                boxShadow: [
+                  '0 10px 30px rgba(30,58,138,0.6), inset 0 -4px 8px rgba(0,0,0,0.3)',
+                  '0 10px 40px rgba(59,130,246,0.8), inset 0 -4px 8px rgba(0,0,0,0.3)',
+                  '0 10px 30px rgba(30,58,138,0.6), inset 0 -4px 8px rgba(0,0,0,0.3)'
+                ]
+              }}
+              transition={{
+                boxShadow: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+              }}
               style={{ 
-                boxShadow: '0 10px 30px rgba(30,58,138,0.6), inset 0 -4px 8px rgba(0,0,0,0.3)',
                 transformStyle: 'preserve-3d'
               }}
             >
-              GET PROJECT QUOTE
-            </button>
-            <button
+              <span className="relative z-10">GET PROJECT QUOTE</span>
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20"
+                animate={{ x: ['-100%', '200%'] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 1 }}
+              />
+            </motion.button>
+            <motion.button
               onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-transparent border-2 border-white hover:bg-white hover:text-navy text-white font-montserrat font-bold px-8 py-4 rounded-lg transition-all transform hover:scale-105"
+              className="bg-transparent border-2 border-white hover:bg-white hover:text-navy text-white font-montserrat font-bold px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-lg transition-all relative overflow-hidden group text-sm sm:text-base"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              animate={{
+                borderColor: [
+                  'rgba(255,255,255,1)',
+                  'rgba(59,130,246,1)',
+                  'rgba(255,255,255,1)'
+                ]
+              }}
+              transition={{
+                borderColor: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+              }}
               style={{ 
                 boxShadow: '0 10px 30px rgba(255,255,255,0.3), inset 0 -4px 8px rgba(0,0,0,0.2)',
                 transformStyle: 'preserve-3d'
               }}
             >
-              VIEW PORTFOLIO
-            </button>
+              <span className="relative z-10">VIEW PORTFOLIO</span>
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-10"
+                animate={{ x: ['-100%', '200%'] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 1.5 }}
+              />
+            </motion.button>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto px-4">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
@@ -157,17 +190,17 @@ const Home = () => {
                   }
                 }}
                 whileHover={{ y: -8, rotateY: 5, scale: 1.05 }}
-                className="rounded-xl p-6 border border-white border-opacity-30"
+                className="rounded-xl p-4 sm:p-6 border border-white border-opacity-30"
                 style={{ 
-                  background: 'rgba(255, 255, 255, 0.15)',
+                  background: 'linear-gradient(135deg, rgba(0,0,139,0.3) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,139,0.3) 100%)',
                   backdropFilter: 'blur(12px)',
                   WebkitBackdropFilter: 'blur(12px)',
                   boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.4)',
                   transformStyle: 'preserve-3d'
                 }}
               >
-                <stat.icon className="w-12 h-12 text-white mx-auto mb-4" style={{ filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.8))' }} />
-                <div className="text-5xl font-montserrat font-black text-white mb-2" style={{ 
+                <stat.icon className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white mx-auto mb-2 sm:mb-4" style={{ filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.8))' }} />
+                <div className="text-3xl sm:text-4xl md:text-5xl font-montserrat font-black text-white mb-1 sm:mb-2" style={{ 
                   textShadow: `
                     0 1px 0 #9CA3AF,
                     0 2px 0 #6B7280,
@@ -185,14 +218,14 @@ const Home = () => {
                   <Counter end={stat.value} />
                   {stat.suffix}
                 </div>
-                <div className="text-white font-opensans font-semibold" style={{ textShadow: '2px 4px 8px rgba(0,0,0,0.6)' }}>{stat.label}</div>
+                <div className="text-white font-opensans font-semibold text-xs sm:text-sm md:text-base" style={{ textShadow: '2px 4px 8px rgba(0,0,0,0.6)' }}>{stat.label}</div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(to bottom, #000000 0%, #000000 70%, #0000FF 100%)' }}>
+      <section className="py-12 sm:py-16 md:py-20 relative overflow-hidden" style={{ background: 'linear-gradient(to bottom, #000000 0%, #000000 70%, #0000FF 100%)' }}>
         <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 0 }}>
           <LightRays
             raysOrigin="top-center"
@@ -214,7 +247,7 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-montserrat font-black text-white text-center mb-12"
+            className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-montserrat font-black text-white text-center mb-8 sm:mb-12"
           >
             Featured Work
           </motion.h2>
@@ -231,19 +264,19 @@ const Home = () => {
               transform: 'translateZ(20px)'
             }}
           >
-            <div className="grid md:grid-cols-2 gap-8 p-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 p-6 sm:p-8">
               <div>
-                <h3 className="text-3xl font-montserrat font-bold text-charcoal mb-4">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-montserrat font-bold text-charcoal mb-3 sm:mb-4">
                   Give Us Transport Solutions
                 </h3>
-                <p className="text-gray-600 font-opensans mb-4">
+                <p className="text-gray-600 font-opensans mb-3 sm:mb-4 text-sm sm:text-base">
                   R299 Shuttle Booking System - Live Production
                 </p>
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
                   {['React', 'Vercel', 'EmailJS', 'MSSQL'].map((tech) => (
                     <span
                       key={tech}
-                      className="bg-navy text-white px-3 py-1 rounded-full text-sm font-opensans"
+                      className="bg-navy text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-opensans"
                     >
                       {tech}
                     </span>
@@ -253,15 +286,15 @@ const Home = () => {
                   href="https://giveustransportsolutions.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block bg-blueGlow hover:bg-navy text-white font-montserrat font-bold px-6 py-3 rounded-lg transition-colors"
+                  className="inline-block bg-blueGlow hover:bg-navy text-white font-montserrat font-bold px-4 sm:px-6 py-2 sm:py-3 rounded-lg transition-colors text-sm sm:text-base"
                 >
                   View Live Site
                 </a>
               </div>
-              <div className="bg-gray-100 rounded-lg flex items-center justify-center p-8">
+              <div className="bg-gray-100 rounded-lg flex items-center justify-center p-6 sm:p-8 aspect-video">
                 <div className="text-center text-gray-500">
-                  <p className="font-opensans">Shuttle Booking Interface</p>
-                  <p className="text-sm mt-2">Live at giveustransportsolutions.com</p>
+                  <p className="font-opensans text-sm sm:text-base">Shuttle Booking Interface</p>
+                  <p className="text-xs sm:text-sm mt-2">Live at giveustransportsolutions.com</p>
                 </div>
               </div>
             </div>

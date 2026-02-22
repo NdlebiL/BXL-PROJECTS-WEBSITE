@@ -8,7 +8,7 @@ const FloatingWhatsApp = () => {
       href="https://wa.me/+27710000000?text=Hi%20BXL%20Projects!%20I'd%20like%20a%20quote"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 bg-whatsapp text-white rounded-full p-4 flex items-center space-x-2 z-50"
+      className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 bg-whatsapp text-white rounded-full p-3 sm:p-4 flex items-center space-x-2 z-50"
       style={{ 
         boxShadow: '0 20px 40px rgba(16,185,129,0.5), inset 0 -5px 10px rgba(0,0,0,0.3)',
         transformStyle: 'preserve-3d'
@@ -23,9 +23,9 @@ const FloatingWhatsApp = () => {
         transition={{ repeat: Infinity, duration: 2 }}
         style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.4))' }}
       >
-        <MessageCircle size={28} />
+        <MessageCircle size={24} className="sm:w-7 sm:h-7" />
       </motion.div>
-      <span className="hidden sm:inline font-opensans font-semibold">Chat on WhatsApp</span>
+      <span className="hidden sm:inline font-opensans font-semibold text-sm lg:text-base">Chat on WhatsApp</span>
     </motion.a>
   );
 };

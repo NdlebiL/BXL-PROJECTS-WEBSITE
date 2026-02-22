@@ -53,22 +53,22 @@ const Portfolio = () => {
   };
 
   return (
-    <div className="py-20 min-h-screen" style={{ background: 'linear-gradient(to bottom, #000000 0%, #00008B 50%, #000000 100%)' }}>
+    <div className="py-12 sm:py-16 md:py-20 min-h-screen" style={{ background: 'linear-gradient(to bottom, #000000 0%, #00008B 50%, #000000 100%)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 md:mb-16"
         >
-          <h1 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-4">
+          <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-montserrat font-black text-white mb-2 sm:mb-4">
             Our Portfolio
           </h1>
-          <p className="text-xl text-gray-200 font-opensans">
+          <p className="text-base sm:text-lg md:text-xl text-gray-200 font-opensans px-4">
             Showcasing our best work and successful projects
           </p>
         </motion.div>
 
-        <div className="space-y-12">
+        <div className="space-y-8 sm:space-y-12">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -87,73 +87,73 @@ const Portfolio = () => {
                 transformStyle: 'preserve-3d'
               }}
             >
-              <div className={`grid ${project.featured ? 'md:grid-cols-2' : 'md:grid-cols-5'} gap-6 p-8`}>
-                <div className={project.featured ? '' : 'md:col-span-2'}>
+              <div className={`grid grid-cols-1 ${project.featured ? 'md:grid-cols-2' : 'lg:grid-cols-5'} gap-4 sm:gap-6 p-4 sm:p-6 md:p-8`}>
+                <div className={project.featured ? '' : 'lg:col-span-2'}>
                   <div className="relative bg-gray-100 rounded-lg overflow-hidden aspect-video" style={{ boxShadow: 'inset 0 4px 12px rgba(0,0,0,0.2)' }}>
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="text-center text-gray-500">
-                        <p className="font-opensans font-semibold">{project.title}</p>
-                        <p className="text-sm mt-2">Image {(activeCarousel[index] || 0) + 1} of {project.images}</p>
+                        <p className="font-opensans font-semibold text-sm sm:text-base">{project.title}</p>
+                        <p className="text-xs sm:text-sm mt-2">Image {(activeCarousel[index] || 0) + 1} of {project.images}</p>
                       </div>
                     </div>
                     {project.images > 1 && (
                       <>
                         <button
                           onClick={() => prevImage(index, project.images)}
-                          className="absolute left-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 transition-all"
+                          className="absolute left-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-1 sm:p-2 transition-all"
                           style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.3)' }}
                         >
-                          <ChevronLeft className="w-6 h-6 text-charcoal" />
+                          <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6 text-charcoal" />
                         </button>
                         <button
                           onClick={() => nextImage(index, project.images)}
-                          className="absolute right-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 transition-all"
+                          className="absolute right-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-1 sm:p-2 transition-all"
                           style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.3)' }}
                         >
-                          <ChevronRight className="w-6 h-6 text-charcoal" />
+                          <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6 text-charcoal" />
                         </button>
                       </>
                     )}
                   </div>
                 </div>
 
-                <div className={project.featured ? '' : 'md:col-span-3'}>
+                <div className={project.featured ? '' : 'lg:col-span-3'}>
                   {project.featured && (
-                    <span className="inline-block bg-blueGlow text-white px-3 py-1 rounded-full text-sm font-opensans font-semibold mb-4">
+                    <span className="inline-block bg-blueGlow text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-opensans font-semibold mb-3 sm:mb-4">
                       Featured Project
                     </span>
                   )}
-                  <h3 className="text-3xl font-montserrat font-bold text-charcoal mb-3">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-montserrat font-bold text-charcoal mb-2 sm:mb-3">
                     {project.title}
                   </h3>
-                  <p className="text-gray-600 font-opensans mb-6 leading-relaxed">
+                  <p className="text-gray-600 font-opensans mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
                     {project.description}
                   </p>
 
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
                     {project.tech.map((tech, i) => (
                       <span
                         key={i}
-                        className="bg-navy text-white px-3 py-1 rounded-full text-sm font-opensans"
+                        className="bg-navy text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-opensans"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-wrap gap-3 sm:gap-4">
                     {project.link && (
                       <a
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-blueGlow hover:bg-navy text-white font-montserrat font-bold px-6 py-3 rounded-lg transition-colors"
+                        className="inline-flex items-center gap-1 sm:gap-2 bg-blueGlow hover:bg-navy text-white font-montserrat font-bold px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg transition-colors text-xs sm:text-sm md:text-base"
                         style={{ 
                           boxShadow: '0 10px 25px rgba(59,130,246,0.4), inset 0 -3px 6px rgba(0,0,0,0.3)',
                           transformStyle: 'preserve-3d'
                         }}
                       >
-                        <ExternalLink size={20} />
+                        <ExternalLink size={16} className="sm:w-5 sm:h-5" />
                         View Live
                       </a>
                     )}
@@ -162,9 +162,9 @@ const Portfolio = () => {
                         href={project.demo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-gray-200 hover:bg-gray-300 text-charcoal font-montserrat font-bold px-6 py-3 rounded-lg transition-colors"
+                        className="inline-flex items-center gap-1 sm:gap-2 bg-gray-200 hover:bg-gray-300 text-charcoal font-montserrat font-bold px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg transition-colors text-xs sm:text-sm md:text-base"
                       >
-                        <ExternalLink size={20} />
+                        <ExternalLink size={16} className="sm:w-5 sm:h-5" />
                         Demo
                       </a>
                     )}
@@ -173,9 +173,9 @@ const Portfolio = () => {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-charcoal hover:bg-gray-800 text-white font-montserrat font-bold px-6 py-3 rounded-lg transition-colors"
+                        className="inline-flex items-center gap-1 sm:gap-2 bg-charcoal hover:bg-gray-800 text-white font-montserrat font-bold px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg transition-colors text-xs sm:text-sm md:text-base"
                       >
-                        <Github size={20} />
+                        <Github size={16} className="sm:w-5 sm:h-5" />
                         GitHub
                       </a>
                     )}

@@ -20,6 +20,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   perspective: 1000px;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -35,4 +36,46 @@ h1, h2, h3, h4, h5, h6 {
 .card-3d:hover {
   transform: translateY(-12px) rotateX(5deg) rotateY(-5deg);
   box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+}
+
+/* Responsive text scaling */
+@media (max-width: 375px) {
+  .text-responsive {
+    font-size: 0.875rem;
+  }
+}
+
+@media (min-width: 376px) and (max-width: 640px) {
+  .text-responsive {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 641px) {
+  .text-responsive {
+    font-size: 1.125rem;
+  }
+}
+
+/* Ensure proper spacing on very small screens */
+@media (max-width: 320px) {
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
+/* Optimize for tablet landscape */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .tablet-landscape-adjust {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+/* Large screen optimizations */
+@media (min-width: 1920px) {
+  .max-w-7xl {
+    max-width: 90rem;
+  }
 }

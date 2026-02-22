@@ -50,7 +50,7 @@ const Navbar = () => {
         boxShadow: '0 20px 40px -20px rgba(0,0,0,0.8)'
       }}
       className={`w-full transition-all duration-500 bg-black bg-opacity-90 backdrop-blur-md shadow-[0_10px_40px_rgba(0,0,0,0.6)] ${
-        isScrolled ? 'py-3' : 'py-5'
+        isScrolled ? 'py-2 sm:py-3' : 'py-3 sm:py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -59,18 +59,18 @@ const Navbar = () => {
             <motion.h1
               whileHover={{ color: '#3B82F6', scale: 1.05 }}
               style={{ textShadow: '3px 6px 10px rgba(0,0,0,0.5)' }}
-              className="text-white font-montserrat font-black text-2xl md:text-3xl transition-colors"
+              className="text-white font-montserrat font-black text-lg xs:text-xl sm:text-2xl md:text-3xl transition-colors"
             >
               BXL PROJECTS
             </motion.h1>
           </button>
 
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex space-x-4 lg:space-x-8">
             {navLinks.map((link) => (
               <button key={link.path} onClick={() => scrollToSection(link.path)} className="relative group">
                 <motion.span 
                   whileHover={{ y: -2 }}
-                  className="text-white font-opensans font-semibold hover:text-blueGlow transition-all duration-300 inline-block"
+                  className="text-white font-opensans font-semibold hover:text-blueGlow transition-all duration-300 inline-block text-sm lg:text-base"
                   style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}
                 >
                   {link.name}
@@ -88,9 +88,9 @@ const Navbar = () => {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white"
+            className="md:hidden text-white p-1"
           >
-            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
@@ -101,14 +101,14 @@ const Navbar = () => {
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.3 }}
-          className="md:hidden bg-navy bg-opacity-95 mt-4"
+          className="md:hidden bg-navy bg-opacity-95 mt-2 sm:mt-4"
         >
-          <div className="flex flex-col items-center space-y-6 py-8">
+          <div className="flex flex-col items-center space-y-4 sm:space-y-6 py-6 sm:py-8">
             {navLinks.map((link) => (
               <button
                 key={link.path}
                 onClick={() => scrollToSection(link.path)}
-                className="text-white text-2xl font-montserrat font-bold hover:text-blueGlow transition-all duration-300"
+                className="text-white text-xl sm:text-2xl font-montserrat font-bold hover:text-blueGlow transition-all duration-300"
               >
                 {link.name}
               </button>
