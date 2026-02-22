@@ -57,9 +57,9 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           <button onClick={() => scrollToSection('home')}>
             <motion.h1
-              whileHover={{ color: '#3B82F6', scale: 1.05 }}
-              style={{ textShadow: '3px 6px 10px rgba(0,0,0,0.5)' }}
-              className="text-white font-montserrat font-black text-lg xs:text-xl sm:text-2xl md:text-3xl transition-colors"
+              whileHover={{ color: '#FFFFFF', scale: 1.05 }}
+              style={{ textShadow: '3px 6px 10px rgba(0,0,0,0.5)', color: '#3B82F6' }}
+              className="text-blueGlow font-montserrat font-black text-lg xs:text-xl sm:text-2xl md:text-3xl transition-colors"
             >
               BXL PROJECTS
             </motion.h1>

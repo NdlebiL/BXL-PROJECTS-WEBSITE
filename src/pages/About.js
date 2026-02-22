@@ -147,7 +147,14 @@ const About = () => {
                 initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.2, duration: 0.8, ease: "easeOut" }}
+                transition={{ 
+                  delay: index * 0.3, 
+                  type: "spring", 
+                  stiffness: 40, 
+                  damping: 25,
+                  mass: 2,
+                  restDelta: 0.001
+                }}
                 className={`flex items-center mb-6 sm:mb-8 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
               >
                 <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:text-right md:pr-8' : 'md:pl-8'}`}>

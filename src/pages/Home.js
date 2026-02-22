@@ -59,7 +59,7 @@ const Home = () => {
             <span style={{
               position: 'relative',
               display: 'inline-block',
-              color: '#E5E7EB',
+              color: '#D1D5DB',
               textShadow: `
                 0 1px 0 #374151,
                 0 2px 0 #1F2937,
@@ -105,7 +105,7 @@ const Home = () => {
             transition={{ delay: 0.9, duration: 0.8 }}
             className="text-white font-opensans text-sm sm:text-base md:text-lg mb-8 sm:mb-12"
           >
-            East London, Eastern Cape, South Africa
+             South Africa
           </motion.p>
 
           <motion.div
@@ -117,20 +117,21 @@ const Home = () => {
             <motion.button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               className="bg-navy hover:bg-blueGlow text-white font-montserrat font-bold px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-lg transition-all relative overflow-hidden group text-sm sm:text-base"
+              initial={{ x: -200, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ 
+                delay: 1.2, 
+                type: "spring", 
+                stiffness: 50, 
+                damping: 20,
+                mass: 1.5,
+                restDelta: 0.001
+              }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
-              animate={{
-                boxShadow: [
-                  '0 10px 30px rgba(30,58,138,0.6), inset 0 -4px 8px rgba(0,0,0,0.3)',
-                  '0 10px 40px rgba(59,130,246,0.8), inset 0 -4px 8px rgba(0,0,0,0.3)',
-                  '0 10px 30px rgba(30,58,138,0.6), inset 0 -4px 8px rgba(0,0,0,0.3)'
-                ]
-              }}
-              transition={{
-                boxShadow: { duration: 2, repeat: Infinity, ease: "easeInOut" }
-              }}
               style={{ 
-                transformStyle: 'preserve-3d'
+                transformStyle: 'preserve-3d',
+                boxShadow: '0 10px 30px rgba(30,58,138,0.6), inset 0 -4px 8px rgba(0,0,0,0.3)'
               }}
             >
               <span className="relative z-10">GET PROJECT QUOTE</span>
@@ -143,18 +144,18 @@ const Home = () => {
             <motion.button
               onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
               className="bg-transparent border-2 border-white hover:bg-white hover:text-navy text-white font-montserrat font-bold px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-lg transition-all relative overflow-hidden group text-sm sm:text-base"
+              initial={{ x: 200, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ 
+                delay: 1.4, 
+                type: "spring", 
+                stiffness: 50, 
+                damping: 20,
+                mass: 1.5,
+                restDelta: 0.001
+              }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
-              animate={{
-                borderColor: [
-                  'rgba(255,255,255,1)',
-                  'rgba(59,130,246,1)',
-                  'rgba(255,255,255,1)'
-                ]
-              }}
-              transition={{
-                borderColor: { duration: 2, repeat: Infinity, ease: "easeInOut" }
-              }}
               style={{ 
                 boxShadow: '0 10px 30px rgba(255,255,255,0.3), inset 0 -4px 8px rgba(0,0,0,0.2)',
                 transformStyle: 'preserve-3d'
