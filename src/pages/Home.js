@@ -192,7 +192,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-20 relative overflow-hidden bg-black">
+      <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(to bottom, #000000 0%, #000000 70%, #0000FF 100%)' }}>
         <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 0 }}>
           <LightRays
             raysOrigin="top-center"
@@ -226,8 +226,9 @@ const Home = () => {
             whileHover={{ y: -10, rotateX: 3 }}
             className="bg-white rounded-2xl overflow-hidden"
             style={{ 
-              boxShadow: '0 30px 60px rgba(0,0,0,0.3), inset 0 -8px 16px rgba(0,0,0,0.1)',
-              transformStyle: 'preserve-3d'
+              boxShadow: '0 8px 0 #d1d5db, 0 16px 0 #9ca3af, 0 24px 0 #6b7280, 0 32px 0 #4b5563, 0 40px 60px rgba(0,0,0,0.5), inset 0 -4px 10px rgba(0,0,0,0.1)',
+              transformStyle: 'preserve-3d',
+              transform: 'translateZ(20px)'
             }}
           >
             <div className="grid md:grid-cols-2 gap-8 p-8">

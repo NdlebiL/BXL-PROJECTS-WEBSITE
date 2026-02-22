@@ -35,22 +35,22 @@ const Services = () => {
   ];
 
   return (
-    <div className="py-20 bg-gray-50 min-h-screen">
+    <div className="py-20 min-h-screen" style={{ background: 'linear-gradient(to bottom, #0000FF 0%, #000000 30%, #000000 70%, #00008B 90%, #000000 100%)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl md:text-6xl font-montserrat font-black text-charcoal mb-4">
+          <h1 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-4">
             Our Services
           </h1>
-          <p className="text-xl text-gray-600 font-opensans">
+          <p className="text-xl text-gray-200 font-opensans">
             Comprehensive digital solutions for your business
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-16">
           {services.map((service, index) => (
             <motion.div
               key={index}

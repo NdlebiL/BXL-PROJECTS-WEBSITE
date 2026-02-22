@@ -71,17 +71,17 @@ const Contact = () => {
   ];
 
   return (
-    <div className="py-20 bg-gray-50 min-h-screen pt-24">
+    <div className="py-20 min-h-screen pt-24" style={{ background: 'linear-gradient(to bottom, #000000 0%, #00008B 30%, #00008B 70%, #000000 100%)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl md:text-6xl font-montserrat font-black text-charcoal mb-4">
+          <h1 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-4">
             Get In Touch
           </h1>
-          <p className="text-xl text-gray-600 font-opensans">
+          <p className="text-xl text-gray-300 font-opensans">
             Let's discuss your next project
           </p>
         </motion.div>
@@ -117,8 +117,9 @@ const Contact = () => {
           transition={{ delay: 0.3 }}
           className="bg-white rounded-2xl p-8 md:p-12"
           style={{ 
-            boxShadow: '0 30px 60px rgba(0,0,0,0.3), inset 0 -8px 16px rgba(0,0,0,0.05)',
-            transformStyle: 'preserve-3d'
+            boxShadow: '0 8px 0 #d1d5db, 0 16px 0 #9ca3af, 0 24px 0 #6b7280, 0 32px 0 #4b5563, 0 40px 60px rgba(0,0,0,0.5), inset 0 -4px 10px rgba(0,0,0,0.1)',
+            transformStyle: 'preserve-3d',
+            transform: 'translateZ(20px)'
           }}
         >
           {submitSuccess ? (

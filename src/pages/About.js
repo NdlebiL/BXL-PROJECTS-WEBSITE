@@ -20,18 +20,18 @@ const About = () => {
   ];
 
   return (
-    <div className="bg-gray-50">
-      <div className="py-20">
+    <div className="bg-black">
+      <div className="py-20" style={{ background: 'linear-gradient(to bottom, #000000 0%, #00008B 30%, #00008B 70%, #000000 100%)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-16"
           >
-            <h1 className="text-5xl md:text-6xl font-montserrat font-black text-charcoal mb-4">
+            <h1 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-4">
               About BXL Projects
             </h1>
-            <p className="text-xl text-gray-600 font-opensans max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 font-opensans max-w-3xl mx-auto">
               Bukhanye Xcellence Legacy - Building digital solutions that empower businesses in East London and beyond
             </p>
           </motion.div>
@@ -43,11 +43,12 @@ const About = () => {
             whileHover={{ y: -5, rotateY: 2 }}
             className="bg-white rounded-2xl p-8 md:p-12 mb-16"
             style={{ 
-              boxShadow: '0 30px 60px rgba(0,0,0,0.3), inset 0 -8px 16px rgba(0,0,0,0.05)',
-              transformStyle: 'preserve-3d'
+              boxShadow: '0 8px 0 #d1d5db, 0 16px 0 #9ca3af, 0 24px 0 #6b7280, 0 32px 0 #4b5563, 0 40px 60px rgba(0,0,0,0.5), inset 0 -4px 10px rgba(0,0,0,0.1)',
+              transformStyle: 'preserve-3d',
+              transform: 'translateZ(20px)'
             }}
           >
-            <h2 className="text-3xl font-montserrat font-bold text-charcoal mb-6">Our Story</h2>
+            <h2 className="text-3xl font-montserrat font-bold mb-6" style={{ color: '#00008B' }}>Our Story</h2>
             <p className="text-gray-600 font-opensans text-lg leading-relaxed mb-4">
               BXL Projects was founded with a mission to bring world-class digital solutions to businesses in the Eastern Cape. 
               Based in East London, South Africa, we specialize in React/Next.js development, custom API solutions, WhatsApp automation, 
@@ -60,7 +61,7 @@ const About = () => {
           </motion.div>
 
       <div className="bg-black py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="px-4 sm:px-6 lg:px-8">
           <div className="mb-16 relative">
             <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 0 }}>
               <Threads
@@ -106,7 +107,7 @@ const About = () => {
                       transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: index * 0.2 }}
                     >
                       <value.icon className="w-12 h-12 text-blueGlow mx-auto mb-4" style={{ filter: 'drop-shadow(0 4px 8px rgba(59,130,246,0.4))' }} />
-                      <h3 className="text-xl font-montserrat font-bold text-charcoal mb-2">{value.title}</h3>
+                      <h3 className="text-xl font-montserrat font-bold mb-2" style={{ color: '#00008B' }}>{value.title}</h3>
                       <p className="text-gray-600 font-opensans text-sm">{value.description}</p>
                     </motion.div>
                   </motion.div>
@@ -169,7 +170,7 @@ const About = () => {
                     }}
                   >
                     <div className="text-blueGlow font-montserrat font-bold text-2xl mb-2">{item.year}</div>
-                    <h3 className="text-xl font-montserrat font-bold text-charcoal mb-2">{item.event}</h3>
+                    <h3 className="text-xl font-montserrat font-bold mb-2" style={{ color: '#00008B' }}>{item.event}</h3>
                     <p className="text-gray-600 font-opensans">{item.description}</p>
                   </motion.div>
                 </div>

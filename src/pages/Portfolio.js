@@ -53,17 +53,17 @@ const Portfolio = () => {
   };
 
   return (
-    <div className="py-20 bg-gray-50 min-h-screen">
+    <div className="py-20 min-h-screen" style={{ background: 'linear-gradient(to bottom, #000000 0%, #00008B 50%, #000000 100%)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl md:text-6xl font-montserrat font-black text-charcoal mb-4">
+          <h1 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-4">
             Our Portfolio
           </h1>
-          <p className="text-xl text-gray-600 font-opensans">
+          <p className="text-xl text-gray-200 font-opensans">
             Showcasing our best work and successful projects
           </p>
         </motion.div>
