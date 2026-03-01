@@ -36,7 +36,11 @@ const Navbar = () => {
   ];
 
   const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    if (id === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
     setIsMobileMenuOpen(false);
   };
 
@@ -49,20 +53,20 @@ const Navbar = () => {
         zIndex: 9999,
         boxShadow: '0 20px 40px -20px rgba(0,0,0,0.8)'
       }}
-      className={`w-full transition-all duration-500 bg-black bg-opacity-90 backdrop-blur-md shadow-[0_10px_40px_rgba(0,0,0,0.6)] ${
-        isScrolled ? 'py-2 sm:py-3' : 'py-3 sm:py-5'
+      className={`w-full transition-all duration-500 backdrop-blur-md shadow-[0_10px_40px_rgba(0,0,0,0.6)] ${
+        isScrolled ? 'py-2 sm:py-3 bg-black bg-opacity-95' : 'py-3 sm:py-5 bg-gradient-to-b from-black via-black to-black'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <button onClick={() => scrollToSection('home')}>
-            <motion.h1
-              whileHover={{ color: '#FFFFFF', scale: 1.05 }}
-              style={{ textShadow: '3px 6px 10px rgba(0,0,0,0.5)', color: '#3B82F6' }}
-              className="text-blueGlow font-montserrat font-black text-lg xs:text-xl sm:text-2xl md:text-3xl transition-colors"
-            >
-              BXL PROJECTS
-            </motion.h1>
+            <motion.img
+              src="/BXL PROJECTS Logo.svg"
+              alt="BXL Projects Logo"
+              whileHover={{ scale: 1.05 }}
+              className="h-8 xs:h-10 sm:h-12 md:h-14 w-auto"
+              style={{ filter: 'drop-shadow(3px 6px 10px rgba(0,0,0,0.5))' }}
+            />
           </button>
 
           <div className="hidden md:flex space-x-4 lg:space-x-8">

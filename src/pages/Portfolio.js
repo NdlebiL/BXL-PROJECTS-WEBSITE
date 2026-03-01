@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ExternalLink, Github, ChevronLeft, ChevronRight, Code, Zap } from 'lucide-react';
 
 const Portfolio = () => {
   const [activeCarousel, setActiveCarousel] = useState({});
@@ -8,11 +8,11 @@ const Portfolio = () => {
   const projects = [
     {
       title: 'Give Us Transport Solutions',
-      description: 'R299 Shuttle Booking System - Live Production',
+      description: 'Shuttle Booking System - Live Production',
       tech: ['React', 'Vercel', 'EmailJS', 'MSSQL', 'WhatsApp API'],
       link: 'https://giveustransportsolutions.com',
       featured: true,
-      images: 3,
+      images: ['GUTS HOME PAGE.png', 'GUTS MISSION PAGE.png', 'GUTS BOOKINGS PAGE.png'],
     },
     {
       title: 'IMS React Dashboard',
@@ -38,155 +38,228 @@ const Portfolio = () => {
     },
   ];
 
-  const nextImage = (projectIndex, totalImages) => {
+  const nextImage = (projectIndex, project) => {
     setActiveCarousel(prev => ({
       ...prev,
-      [projectIndex]: ((prev[projectIndex] || 0) + 1) % totalImages
+      [projectIndex]: ((prev[projectIndex] || 0) + 1) % project.images.length
     }));
   };
 
-  const prevImage = (projectIndex, totalImages) => {
+  const prevImage = (projectIndex, project) => {
     setActiveCarousel(prev => ({
       ...prev,
-      [projectIndex]: ((prev[projectIndex] || 0) - 1 + totalImages) % totalImages
+      [projectIndex]: ((prev[projectIndex] || 0) - 1 + project.images.length) % project.images.length
     }));
   };
 
   return (
-    <div className="py-12 sm:py-16 md:py-20 min-h-screen" style={{ background: 'linear-gradient(to bottom, #000000 0%, #00008B 50%, #000000 100%)' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-8 sm:mb-12 md:mb-16"
-        >
-          <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-montserrat font-black text-white mb-2 sm:mb-4">
-            Our Portfolio
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl text-gray-200 font-opensans px-4">
-            Showcasing our best work and successful projects
-          </p>
-        </motion.div>
+    <motion.div 
+      key="portfolio-page"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+      className="relative"
+    >
+      <section className="relative min-h-screen overflow-hidden pt-8" style={{ background: '#000000' }}>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Header Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-6 bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-3xl p-8 md:p-12"
+          >
+            <div className="text-xs font-montserrat text-gray-500 uppercase tracking-widest mb-4">Portfolio / 2025</div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-montserrat font-black text-white mb-4">
+              Featured Work
+            </h1>
+            <p className="text-gray-400 font-opensans text-lg md:text-xl max-w-2xl">
+              Showcasing our best work and successful projects
+            </p>
+          </motion.div>
 
-        <div className="space-y-8 sm:space-y-12">
-          {projects.map((project, index) => (
+          {/* Bento Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
+            
+            {/* Featured Project - Large */}
             <motion.div
-              key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50, rotateY: index % 2 === 0 ? -15 : 15 }}
-              whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -10, scale: 1.02, rotateX: 3 }}
-              className={`bg-white rounded-2xl overflow-hidden ${
-                project.featured ? 'border-4 border-blueGlow' : ''
-              }`}
-              style={{ 
-                boxShadow: project.featured 
-                  ? '0 35px 70px rgba(59,130,246,0.4), inset 0 -8px 16px rgba(0,0,0,0.1)' 
-                  : '0 25px 50px rgba(0,0,0,0.3), inset 0 -6px 12px rgba(0,0,0,0.1)',
-                transformStyle: 'preserve-3d'
-              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="md:col-span-8 bg-gradient-to-br from-blue-600 to-blue-800 rounded-3xl p-6 md:p-8 relative overflow-hidden"
             >
-              <div className={`grid grid-cols-1 ${project.featured ? 'md:grid-cols-2' : 'lg:grid-cols-5'} gap-4 sm:gap-6 p-4 sm:p-6 md:p-8`}>
-                <div className={project.featured ? '' : 'lg:col-span-2'}>
-                  <div className="relative bg-gray-100 rounded-lg overflow-hidden aspect-video" style={{ boxShadow: 'inset 0 4px 12px rgba(0,0,0,0.2)' }}>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center text-gray-500">
-                        <p className="font-opensans font-semibold text-sm sm:text-base">{project.title}</p>
-                        <p className="text-xs sm:text-sm mt-2">Image {(activeCarousel[index] || 0) + 1} of {project.images}</p>
-                      </div>
-                    </div>
-                    {project.images > 1 && (
-                      <>
-                        <button
-                          onClick={() => prevImage(index, project.images)}
-                          className="absolute left-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-1 sm:p-2 transition-all"
-                          style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.3)' }}
-                        >
-                          <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6 text-charcoal" />
-                        </button>
-                        <button
-                          onClick={() => nextImage(index, project.images)}
-                          className="absolute right-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-1 sm:p-2 transition-all"
-                          style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.3)' }}
-                        >
-                          <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6 text-charcoal" />
-                        </button>
-                      </>
-                    )}
-                  </div>
-                </div>
-
-                <div className={project.featured ? '' : 'lg:col-span-3'}>
-                  {project.featured && (
-                    <span className="inline-block bg-blueGlow text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-opensans font-semibold mb-3 sm:mb-4">
-                      Featured Project
-                    </span>
+              <div className="absolute top-4 left-4 bg-white bg-opacity-20 backdrop-blur-sm px-3 py-1 rounded-full">
+                <span className="text-xs font-montserrat text-white uppercase tracking-widest">Featured</span>
+              </div>
+              
+              <div className="mt-8 mb-4">
+                <div className="relative bg-black bg-opacity-30 rounded-2xl overflow-hidden mb-4">
+                  {Array.isArray(projects[0].images) && (
+                    <>
+                      <img 
+                        src={`/${projects[0].images[activeCarousel[0] || 0]}`}
+                        alt={projects[0].title}
+                        className="w-full h-auto object-contain"
+                      />
+                      {projects[0].images.length > 1 && (
+                        <>
+                          <button
+                            onClick={() => prevImage(0, projects[0])}
+                            className="absolute left-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 transition-all"
+                          >
+                            <ChevronLeft className="w-5 h-5 text-gray-900" />
+                          </button>
+                          <button
+                            onClick={() => nextImage(0, projects[0])}
+                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 transition-all"
+                          >
+                            <ChevronRight className="w-5 h-5 text-gray-900" />
+                          </button>
+                        </>
+                      )}
+                    </>
                   )}
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-montserrat font-bold text-charcoal mb-2 sm:mb-3">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-600 font-opensans mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
-                    {project.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
-                    {project.tech.map((tech, i) => (
-                      <span
-                        key={i}
-                        className="bg-navy text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-opensans"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="flex flex-wrap gap-3 sm:gap-4">
-                    {project.link && (
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 sm:gap-2 bg-blueGlow hover:bg-navy text-white font-montserrat font-bold px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg transition-colors text-xs sm:text-sm md:text-base"
-                        style={{ 
-                          boxShadow: '0 10px 25px rgba(59,130,246,0.4), inset 0 -3px 6px rgba(0,0,0,0.3)',
-                          transformStyle: 'preserve-3d'
-                        }}
-                      >
-                        <ExternalLink size={16} className="sm:w-5 sm:h-5" />
-                        View Live
-                      </a>
-                    )}
-                    {project.demo && (
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 sm:gap-2 bg-gray-200 hover:bg-gray-300 text-charcoal font-montserrat font-bold px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg transition-colors text-xs sm:text-sm md:text-base"
-                      >
-                        <ExternalLink size={16} className="sm:w-5 sm:h-5" />
-                        Demo
-                      </a>
-                    )}
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 sm:gap-2 bg-charcoal hover:bg-gray-800 text-white font-montserrat font-bold px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg transition-colors text-xs sm:text-sm md:text-base"
-                      >
-                        <Github size={16} className="sm:w-5 sm:h-5" />
-                        GitHub
-                      </a>
-                    )}
-                  </div>
                 </div>
               </div>
+
+              <h3 className="text-2xl md:text-3xl font-montserrat font-bold text-white mb-2">
+                {projects[0].title}
+              </h3>
+              <p className="text-blue-100 font-opensans mb-4">
+                {projects[0].description}
+              </p>
+
+              <div className="flex flex-wrap gap-2 mb-4">
+                {projects[0].tech.map((tech, i) => (
+                  <span key={i} className="bg-white bg-opacity-20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-opensans">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              <a
+                href={projects[0].link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-white text-blue-600 font-montserrat font-bold px-6 py-3 rounded-full hover:bg-blue-50 transition-all"
+              >
+                <ExternalLink size={18} />
+                View Live
+              </a>
             </motion.div>
-          ))}
+
+            {/* Stats Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="md:col-span-4 bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-3xl p-6 md:p-8 flex flex-col justify-center items-center text-center"
+            >
+              <Code className="w-12 h-12 text-blue-400 mb-4" />
+              <div className="text-5xl font-black text-white mb-2">5+</div>
+              <div className="text-gray-300 font-opensans text-lg">Projects Delivered</div>
+            </motion.div>
+
+            {/* Project Card 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="md:col-span-6 bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-3xl p-6 md:p-8"
+            >
+              <div className="text-xs font-montserrat text-gray-500 uppercase tracking-widest mb-4">Project 02</div>
+              <h3 className="text-2xl font-montserrat font-bold text-white mb-2">
+                {projects[1].title}
+              </h3>
+              <p className="text-gray-400 font-opensans mb-4">
+                {projects[1].description}
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {projects[1].tech.map((tech, i) => (
+                  <span key={i} className="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-xs font-opensans">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              <div className="flex gap-3">
+                <a href={projects[1].demo} className="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-montserrat hover:bg-blue-700 transition-all">
+                  <ExternalLink size={16} /> Demo
+                </a>
+                <a href={projects[1].github} className="inline-flex items-center gap-2 bg-gray-700 text-white px-4 py-2 rounded-full text-sm font-montserrat hover:bg-gray-600 transition-all">
+                  <Github size={16} /> GitHub
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Project Card 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="md:col-span-6 bg-gradient-to-br from-purple-900 to-purple-950 rounded-3xl p-6 md:p-8"
+            >
+              <div className="text-xs font-montserrat text-purple-300 uppercase tracking-widest mb-4">Project 03</div>
+              <h3 className="text-2xl font-montserrat font-bold text-white mb-2">
+                {projects[2].title}
+              </h3>
+              <p className="text-purple-200 font-opensans mb-4">
+                {projects[2].description}
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {projects[2].tech.map((tech, i) => (
+                  <span key={i} className="bg-white bg-opacity-20 text-white px-3 py-1 rounded-full text-xs font-opensans">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              <a href={projects[2].demo} className="inline-flex items-center gap-2 bg-white text-purple-600 px-4 py-2 rounded-full text-sm font-montserrat font-bold hover:bg-purple-50 transition-all">
+                <ExternalLink size={16} /> View Demo
+              </a>
+            </motion.div>
+
+            {/* Project Card 4 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="md:col-span-8 bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-3xl p-6 md:p-8"
+            >
+              <div className="text-xs font-montserrat text-gray-500 uppercase tracking-widest mb-4">Project 04</div>
+              <h3 className="text-2xl font-montserrat font-bold text-white mb-2">
+                {projects[3].title}
+              </h3>
+              <p className="text-gray-400 font-opensans mb-4">
+                {projects[3].description}
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {projects[3].tech.map((tech, i) => (
+                  <span key={i} className="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-xs font-opensans">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              <a href={projects[3].link} className="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-montserrat hover:bg-blue-700 transition-all">
+                <ExternalLink size={16} /> View Live
+              </a>
+            </motion.div>
+
+            {/* CTA Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.6 }}
+              className="md:col-span-4 bg-gradient-to-br from-green-600 to-green-800 rounded-3xl p-6 md:p-8 flex flex-col justify-center items-center text-center cursor-pointer hover:scale-105 transition-transform"
+              onClick={() => window.location.href = '/contact'}
+            >
+              <Zap className="w-12 h-12 text-white mb-4" />
+              <div className="text-white font-montserrat font-bold text-2xl mb-2">Start Your Project</div>
+              <div className="text-green-100 font-opensans text-sm">Let's build together →</div>
+            </motion.div>
+
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </motion.div>
   );
 };
 

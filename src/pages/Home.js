@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle, Users, Award } from 'lucide-react';
-import LightRays from '../components/ui/LightRays';
+import { CheckCircle, Users, Award, ArrowRight } from 'lucide-react';
 import DarkVeil from '../components/ui/DarkVeil';
 
 const Counter = ({ end, duration = 2 }) => {
@@ -26,283 +25,204 @@ const Counter = ({ end, duration = 2 }) => {
 };
 
 const Home = () => {
-  const stats = [
-    { icon: CheckCircle, value: 5, label: 'Projects Delivered', suffix: '+' },
-    { icon: Users, value: 2, label: 'Clients Served', suffix: '+' },
-    { icon: Award, value: 100, label: 'Satisfaction', suffix: '%' },
-  ];
+  const [animationKey, setAnimationKey] = React.useState(Date.now());
+
+  React.useEffect(() => {
+    setAnimationKey(Date.now());
+  }, []);
 
   return (
-    <div className="relative">
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ marginTop: '-80px', paddingTop: '80px' }}>
-        <div style={{ width: '100%', height: '110%', position: 'absolute', top: 0, left: 0 }}>
-          <DarkVeil
-            hueShift={0}
-            noiseIntensity={0}
-            scanlineIntensity={0}
-            speed={1.00}
-            scanlineFrequency={0}
-            warpAmount={0}
-          />
+    <motion.div 
+      key={animationKey}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+      className="relative"
+    >
+      <section className="relative min-h-screen overflow-hidden pt-8" style={{ background: '#000000' }}>
+        <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, opacity: 0.3 }}>
+          <DarkVeil hueShift={0} noiseIntensity={0} scanlineIntensity={0} speed={1.00} scanlineFrequency={0} warpAmount={0} />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" style={{ position: 'relative', zIndex: 10 }}>
-          <motion.h1
-            initial={{ y: 50, opacity: 0, rotateX: -30 }}
-            animate={{ y: 0, opacity: 1, rotateX: 0 }}
-            transition={{ duration: 0.8 }}
-            className="font-montserrat font-black text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-4 sm:mb-6 relative"
-            style={{ 
-              transformStyle: 'preserve-3d',
-              letterSpacing: '0.02em'
-            }}
-          >
-            <span style={{
-              position: 'relative',
-              display: 'inline-block',
-              color: '#9CA3AF',
-              textShadow: `
-                0 1px 0 #374151,
-                0 2px 0 #1F2937,
-                0 3px 0 #111827,
-                0 4px 0 #0F172A,
-                0 5px 0 #020617,
-                0 6px 1px rgba(0,0,0,.3),
-                0 0 5px rgba(0,0,0,.2),
-                0 1px 3px rgba(0,0,0,.5),
-                0 3px 5px rgba(0,0,0,.4),
-                0 5px 10px rgba(0,0,0,.35),
-                0 10px 20px rgba(0,0,0,.3),
-                0 20px 40px rgba(0,0,0,.25)
-              `
-            }}>
-              BXL PROJECTS
-            </span>
-          </motion.h1>
 
-          <motion.h2
-            initial={{ opacity: 0, z: -100 }}
-            animate={{ opacity: 1, z: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-white font-opensans text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-2 sm:mb-4"
-            style={{ textShadow: '3px 6px 12px rgba(0,0,0,0.5)' }}
-          >
-            Bukhanye Xcellence Legacy
-          </motion.h2>
-
-          <motion.h3
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="text-white font-opensans text-base xs:text-lg sm:text-xl md:text-2xl mb-2 sm:mb-4"
-            style={{ textShadow: '2px 4px 8px rgba(0,0,0,0.5)' }}
-          >
-            Crafting Digital Solutions
-          </motion.h3>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.9, duration: 0.8 }}
-            className="text-white font-opensans text-sm sm:text-base md:text-lg mb-8 sm:mb-12"
-          >
-             South Africa
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2 }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 sm:mb-16 px-4"
-          >
-            <motion.button
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-navy hover:bg-blueGlow text-white font-montserrat font-bold px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-lg transition-all relative overflow-hidden group text-sm sm:text-base"
-              initial={{ x: -200, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ 
-                delay: 1.2, 
-                type: "spring", 
-                stiffness: 50, 
-                damping: 20,
-                mass: 1.5,
-                restDelta: 0.001
-              }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }} 
-              style={{ 
-                transformStyle: 'preserve-3d',
-                boxShadow: '0 10px 30px rgba(30,58,138,0.6), inset 0 -4px 8px rgba(0,0,0,0.3)'
-              }}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Bento Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
+            
+            {/* Hero Title Card - Large */}
+            <motion.div
+              key={`hero-${animationKey}`}
+              initial={{ opacity: 0, x: -200 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.1, ease: "easeOut" }}
+              className="md:col-span-8 bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-3xl p-8 md:p-12 relative overflow-hidden"
+              style={{ minHeight: '400px' }}
             >
-              <span className="relative z-10">GET PROJECT QUOTE</span>
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20"
-                animate={{ x: ['-100%', '200%'] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 1 }}
-              />
-            </motion.button>
-            <motion.button
-              onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-transparent border-2 border-white hover:bg-white hover:text-navy text-white font-montserrat font-bold px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-lg transition-all relative overflow-hidden group text-sm sm:text-base"
-              initial={{ x: 200, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ 
-                delay: 1.4, 
-                type: "spring", 
-                stiffness: 50, 
-                damping: 20,
-                mass: 1.5,
-                restDelta: 0.001
-              }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              style={{ 
-                boxShadow: '0 10px 30px rgba(255,255,255,0.3), inset 0 -4px 8px rgba(0,0,0,0.2)',
-                transformStyle: 'preserve-3d'
-              }}
-            >
-              <span className="relative z-10">VIEW PORTFOLIO</span>
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-10"
-                animate={{ x: ['-100%', '200%'] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 1.5 }}
-              />
-            </motion.button>
-          </motion.div>
+              <div className="absolute top-4 left-4 text-xs font-montserrat text-gray-500 uppercase tracking-widest">Issue 01 / 2025</div>
+              <div className="flex flex-col justify-center h-full">
+                <motion.h1
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+                  className="font-montserrat font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-4"
+                  style={{ lineHeight: '1.1', letterSpacing: '-0.02em' }}
+                >
+                  BXL<br/>PROJECTS
+                </motion.h1>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+                  className="text-gray-400 font-opensans text-lg md:text-xl mb-2"
+                >
+                  Bukhanye Xcellence Legacy
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+                  className="text-white text-base md:text-lg mb-8"
+                  style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic' }}
+                >
+                  Crafting Digital Solutions
+                </motion.p>
+                <motion.button
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-montserrat font-bold px-8 py-4 rounded-full transition-all inline-flex items-center gap-2 w-fit"
+                >
+                  Start Project <ArrowRight size={20} />
+                </motion.button>
+              </div>
+            </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto px-4">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30, rotateX: -20 }}
-                animate={{
-                  opacity: 1,
-                  y: [0, -10, 0],
-                  rotateX: 0,
-                  transition: {
-                    opacity: { duration: 0.8, delay: 1.5 + index * 0.2 },
-                    rotateX: { duration: 0.8, delay: 1.5 + index * 0.2 },
-                    y: {
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 1.5 + index * 0.5
-                    }
-                  }
-                }}
-                whileHover={{ y: -8, rotateY: 5, scale: 1.05 }}
-                className="rounded-xl p-4 sm:p-6 border border-white border-opacity-30"
-                style={{ 
-                  background: 'linear-gradient(135deg, rgba(0,0,139,0.3) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,139,0.3) 100%)',
-                  backdropFilter: 'blur(12px)',
-                  WebkitBackdropFilter: 'blur(12px)',
-                  boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.4)',
-                  transformStyle: 'preserve-3d'
-                }}
-              >
-                <stat.icon className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white mx-auto mb-2 sm:mb-4" style={{ filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.8))' }} />
-                <div className="text-3xl sm:text-4xl md:text-5xl font-montserrat font-black text-white mb-1 sm:mb-2" style={{ 
-                  textShadow: `
-                    0 1px 0 #9CA3AF,
-                    0 2px 0 #6B7280,
-                    0 3px 0 #4B5563,
-                    0 4px 0 #374151,
-                    0 5px 0 #1F2937,
-                    0 6px 1px rgba(0,0,0,.5),
-                    0 0 8px rgba(0,0,0,.3),
-                    0 2px 5px rgba(0,0,0,.6),
-                    0 5px 10px rgba(0,0,0,.5),
-                    0 10px 20px rgba(0,0,0,.4),
-                    0 20px 40px rgba(0,0,0,.3)
-                  `
-                }}>
-                  <Counter end={stat.value} />
-                  {stat.suffix}
+            {/* Stats Card 1 */}
+            <motion.div
+              key={`stats1-${animationKey}`}
+              initial={{ opacity: 0, x: 200 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+              className="md:col-span-4 bg-blue-600 rounded-3xl p-6 md:p-8 flex flex-col justify-between"
+              style={{ minHeight: '200px' }}
+            >
+              <div className="text-xs font-montserrat text-blue-200 uppercase tracking-widest mb-4">Portfolio</div>
+              <div>
+                <div className="text-6xl md:text-7xl font-black text-white mb-2">
+                  <Counter end={5} />+
                 </div>
-                <div className="text-white font-opensans font-semibold text-xs sm:text-sm md:text-base" style={{ textShadow: '2px 4px 8px rgba(0,0,0,0.6)' }}>{stat.label}</div>
-              </motion.div>
-            ))}
+                <div className="text-white font-opensans text-lg">Projects Delivered</div>
+              </div>
+            </motion.div>
+
+            {/* Quote Card */}
+            <motion.div
+              key={`quote-${animationKey}`}
+              initial={{ opacity: 0, x: -200 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+              className="md:col-span-4 bg-white rounded-3xl p-6 md:p-8 relative"
+              style={{ minHeight: '200px' }}
+            >
+              <div className="text-8xl font-serif text-gray-200 absolute top-4 left-4">"</div>
+              <div className="relative z-10 flex flex-col justify-center h-full">
+                <p className="text-gray-900 font-opensans text-base md:text-lg mb-4 leading-relaxed">
+                  Building solutions that scale for tomorrow's growth
+                </p>
+                <div className="text-sm text-gray-600 font-montserrat">— BXL Philosophy</div>
+              </div>
+            </motion.div>
+
+            {/* Stats Card 2 */}
+            <motion.div
+              key={`stats2-${animationKey}`}
+              initial={{ opacity: 0, x: 200 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+              className="md:col-span-4 bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-3xl p-6 md:p-8"
+              style={{ minHeight: '200px' }}
+            >
+              <CheckCircle className="w-12 h-12 text-green-400 mb-4" />
+              <div className="text-5xl md:text-6xl font-black text-white mb-2">
+                <Counter end={100} />%
+              </div>
+              <div className="text-gray-300 font-opensans text-lg">Client Satisfaction</div>
+            </motion.div>
+
+            {/* CTA Card */}
+            <motion.div
+              key={`cta-${animationKey}`}
+              initial={{ opacity: 0, x: -200 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+              className="md:col-span-4 bg-gradient-to-br from-purple-600 to-blue-600 rounded-3xl p-6 md:p-8 flex flex-col justify-between cursor-pointer hover:scale-105 transition-transform"
+              onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
+              style={{ minHeight: '200px' }}
+            >
+              <div className="text-xs font-montserrat text-purple-200 uppercase tracking-widest">Featured</div>
+              <div>
+                <div className="text-white font-montserrat font-bold text-2xl mb-2">View Our Work</div>
+                <div className="text-purple-100 font-opensans text-sm">Explore portfolio →</div>
+              </div>
+            </motion.div>
+
+            {/* Services Preview */}
+            <motion.div
+              key={`services-${animationKey}`}
+              initial={{ opacity: 0, x: 200 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+              className="md:col-span-6 bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-3xl p-6 md:p-8"
+            >
+              <div className="text-xs font-montserrat text-gray-500 uppercase tracking-widest mb-6">What We Do</div>
+              <div className="space-y-4">
+                {['React/Next.js Development', 'Custom API Solutions', 'WhatsApp Automation', 'SEO & Business Setup'].map((service, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.7 + i * 0.1, ease: "easeOut" }}
+                    className="flex items-center gap-3 text-white font-opensans hover:text-blue-400 transition-colors cursor-pointer"
+                  >
+                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <span>{service}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Clients Card */}
+            <motion.div
+              key={`clients-${animationKey}`}
+              initial={{ opacity: 0, x: -200 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.7, ease: "easeOut" }}
+              className="md:col-span-3 bg-gray-800 rounded-3xl p-6 md:p-8 flex flex-col justify-center items-center text-center"
+            >
+              <Users className="w-12 h-12 text-blue-400 mb-4" />
+              <div className="text-5xl font-black text-white mb-2">
+                <Counter end={2} />+
+              </div>
+              <div className="text-gray-300 font-opensans">Happy Clients</div>
+            </motion.div>
+
+            {/* Location Card */}
+            <motion.div
+              key={`location-${animationKey}`}
+              initial={{ opacity: 0, x: 200 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
+              className="md:col-span-3 bg-gradient-to-br from-blue-900 to-blue-950 rounded-3xl p-6 md:p-8 flex flex-col justify-center"
+            >
+              <div className="text-xs font-montserrat text-blue-300 uppercase tracking-widest mb-2">Based in</div>
+              <div className="text-white font-montserrat font-bold text-xl">East London</div>
+              <div className="text-blue-200 font-opensans text-sm">Eastern Cape, SA</div>
+            </motion.div>
+
           </div>
         </div>
       </section>
-
-      <section className="py-12 sm:py-16 md:py-20 relative overflow-hidden" style={{ background: 'linear-gradient(to bottom, #000000 0%, #000000 70%, #0000FF 100%)' }}>
-        <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 0 }}>
-          <LightRays
-            raysOrigin="top-center"
-            raysColor="#2563EB"
-            raysSpeed={3}
-            lightSpread={0.8}
-            rayLength={7}
-            followMouse={true}
-            mouseInfluence={0.5}
-            noiseAmount={0}
-            distortion={0}
-            pulsating={true}
-            fadeDistance={4}
-            saturation={2.5}
-          />
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-montserrat font-black text-white text-center mb-8 sm:mb-12"
-          >
-            Featured Work
-          </motion.h2>
-
-          <motion.div
-            initial={{ opacity: 0, x: -50, rotateY: -15 }}
-            whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-            viewport={{ once: true }}
-            whileHover={{ y: -10, rotateX: 3 }}
-            className="bg-white rounded-2xl overflow-hidden"
-            style={{ 
-              boxShadow: '0 8px 0 #d1d5db, 0 16px 0 #9ca3af, 0 24px 0 #6b7280, 0 32px 0 #4b5563, 0 40px 60px rgba(0,0,0,0.5), inset 0 -4px 10px rgba(0,0,0,0.1)',
-              transformStyle: 'preserve-3d',
-              transform: 'translateZ(20px)'
-            }}
-          >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 p-6 sm:p-8">
-              <div>
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-montserrat font-bold text-charcoal mb-3 sm:mb-4">
-                  Give Us Transport Solutions
-                </h3>
-                <p className="text-gray-600 font-opensans mb-3 sm:mb-4 text-sm sm:text-base">
-                  R299 Shuttle Booking System - Live Production
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
-                  {['React', 'Vercel', 'EmailJS', 'MSSQL'].map((tech) => (
-                    <span
-                      key={tech}
-                      className="bg-navy text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-opensans"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <a
-                  href="https://giveustransportsolutions.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-blueGlow hover:bg-navy text-white font-montserrat font-bold px-4 sm:px-6 py-2 sm:py-3 rounded-lg transition-colors text-sm sm:text-base"
-                >
-                  View Live Site
-                </a>
-              </div>
-              <div className="bg-gray-100 rounded-lg flex items-center justify-center p-6 sm:p-8 aspect-video">
-                <div className="text-center text-gray-500">
-                  <p className="font-opensans text-sm sm:text-base">Shuttle Booking Interface</p>
-                  <p className="text-xs sm:text-sm mt-2">Live at giveustransportsolutions.com</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code, Database, MessageSquare, TrendingUp } from 'lucide-react';
+import { Code, Database, MessageSquare, TrendingUp, ArrowRight } from 'lucide-react';
 
 const Services = () => {
   const services = [
@@ -35,79 +35,136 @@ const Services = () => {
   ];
 
   return (
-    <div className="py-12 sm:py-16 md:py-20 min-h-screen" style={{ background: 'linear-gradient(to bottom, #0000FF 0%, #000000 30%, #000000 70%, #00008B 90%, #000000 100%)' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-8 sm:mb-12 md:mb-16"
-        >
-          <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-2 sm:mb-4">
-            Our Services
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl text-gray-200 font-opensans px-4">
-            Comprehensive digital solutions for your business
-          </p>
-        </motion.div>
+    <motion.div 
+      key="services-page"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+      className="relative"
+    >
+      <section className="relative min-h-screen overflow-hidden pt-8" style={{ background: '#000000' }}>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+          
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-8"
+          >
+            <div className="text-xs font-montserrat text-gray-500 uppercase tracking-widest mb-2">Our Services</div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-montserrat font-black text-white">
+              What We Do
+            </h1>
+          </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16">
-          {services.map((service, index) => (
+          {/* Bento Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
+            
+            {/* Service 1 - Large */}
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30, rotateX: -20 }}
-              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-              whileHover={{ y: -12, scale: 1.03, rotateY: 5 }}
-              className="bg-white rounded-2xl overflow-hidden group"
-              style={{ 
-                boxShadow: '0 25px 50px rgba(0,0,0,0.3), inset 0 -6px 12px rgba(0,0,0,0.1)',
-                transformStyle: 'preserve-3d',
-                transition: 'all 0.3s ease'
-              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="md:col-span-6 bg-gradient-to-br from-blue-600 to-blue-800 rounded-3xl p-8 md:p-10 relative overflow-hidden"
             >
-              <div className={`bg-gradient-to-r ${service.color} p-4 sm:p-6`} style={{ boxShadow: 'inset 0 -4px 8px rgba(0,0,0,0.3)' }}>
-                <service.icon className="w-12 h-12 sm:w-16 sm:h-16 text-white mb-3 sm:mb-4" style={{ filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.5))' }} />
-                <h3 className="text-xl sm:text-2xl font-montserrat font-bold text-white" style={{ textShadow: '2px 4px 8px rgba(0,0,0,0.4)' }}>
-                  {service.title}
-                </h3>
+              <Code className="w-16 h-16 text-white mb-6" />
+              <h3 className="text-3xl font-montserrat font-bold text-white mb-4">{services[0].title}</h3>
+              <p className="text-blue-100 font-opensans mb-6 text-lg">{services[0].description}</p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {services[0].badges.map((badge, i) => (
+                  <span key={i} className="bg-white bg-opacity-20 text-white px-3 py-1 rounded-full text-sm font-opensans">
+                    {badge}
+                  </span>
+                ))}
               </div>
+              <button 
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-white text-blue-600 font-montserrat font-bold px-6 py-3 rounded-full inline-flex items-center gap-2 hover:bg-blue-50 transition-all"
+              >
+                Get Started <ArrowRight size={18} />
+              </button>
+            </motion.div>
 
-              <div className="p-4 sm:p-6">
-                <p className="text-gray-600 font-opensans mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
-                  {service.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2">
-                  {service.badges.map((badge, i) => (
-                    <span
-                      key={i}
-                      className="bg-navy text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-opensans group-hover:bg-blueGlow transition-colors"
-                    >
-                      {badge}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="px-4 sm:px-6 pb-4 sm:pb-6">
-                <a
-                  href="/contact"
-                  onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); }}
-                  className="inline-block w-full text-center bg-blueGlow hover:bg-navy text-white font-montserrat font-bold px-4 sm:px-6 py-2 sm:py-3 rounded-lg transition-colors text-sm sm:text-base"
-                  style={{ 
-                    boxShadow: '0 8px 20px rgba(59,130,246,0.4), inset 0 -3px 6px rgba(0,0,0,0.3)',
-                    transformStyle: 'preserve-3d'
-                  }}
-                >
-                  Get Started
-                </a>
+            {/* Service 2 */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="md:col-span-6 bg-gradient-to-br from-green-600 to-green-800 rounded-3xl p-8 md:p-10"
+            >
+              <Database className="w-16 h-16 text-white mb-6" />
+              <h3 className="text-3xl font-montserrat font-bold text-white mb-4">{services[1].title}</h3>
+              <p className="text-green-100 font-opensans mb-6 text-lg">{services[1].description}</p>
+              <div className="flex flex-wrap gap-2">
+                {services[1].badges.map((badge, i) => (
+                  <span key={i} className="bg-white bg-opacity-20 text-white px-3 py-1 rounded-full text-sm font-opensans">
+                    {badge}
+                  </span>
+                ))}
               </div>
             </motion.div>
-          ))}
+
+            {/* Service 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="md:col-span-6 bg-gradient-to-br from-purple-600 to-purple-800 rounded-3xl p-8 md:p-10"
+            >
+              <MessageSquare className="w-16 h-16 text-white mb-6" />
+              <h3 className="text-3xl font-montserrat font-bold text-white mb-4">{services[2].title}</h3>
+              <p className="text-purple-100 font-opensans mb-6 text-lg">{services[2].description}</p>
+              <div className="flex flex-wrap gap-2">
+                {services[2].badges.map((badge, i) => (
+                  <span key={i} className="bg-white bg-opacity-20 text-white px-3 py-1 rounded-full text-sm font-opensans">
+                    {badge}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Service 4 */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4 }}
+              className="md:col-span-6 bg-gradient-to-br from-orange-600 to-orange-800 rounded-3xl p-8 md:p-10"
+            >
+              <TrendingUp className="w-16 h-16 text-white mb-6" />
+              <h3 className="text-3xl font-montserrat font-bold text-white mb-4">{services[3].title}</h3>
+              <p className="text-orange-100 font-opensans mb-6 text-lg">{services[3].description}</p>
+              <div className="flex flex-wrap gap-2">
+                {services[3].badges.map((badge, i) => (
+                  <span key={i} className="bg-white bg-opacity-20 text-white px-3 py-1 rounded-full text-sm font-opensans">
+                    {badge}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* CTA Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="md:col-span-12 bg-gradient-to-r from-gray-900 to-black border border-gray-800 rounded-3xl p-8 md:p-12 text-center"
+            >
+              <h2 className="text-3xl md:text-4xl font-montserrat font-bold text-white mb-4">Ready to Start Your Project?</h2>
+              <p className="text-gray-400 font-opensans text-lg mb-8 max-w-2xl mx-auto">
+                Let's discuss how we can help bring your digital vision to life
+              </p>
+              <button 
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-montserrat font-bold px-10 py-4 rounded-full inline-flex items-center gap-2 transition-all"
+              >
+                Contact Us <ArrowRight size={20} />
+              </button>
+            </motion.div>
+
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </motion.div>
   );
 };
 

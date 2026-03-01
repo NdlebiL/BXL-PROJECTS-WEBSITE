@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -10,11 +10,15 @@ import FloatingWhatsApp from './components/FloatingWhatsApp';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Router>
       <div className="App" style={{ position: 'relative' }}>
         <Navbar />
-        <div style={{ paddingTop: '80px' }}>
+        <div>
           <div id="home"><Home /></div>
           <div id="services"><Services /></div>
           <div id="about"><About /></div>
