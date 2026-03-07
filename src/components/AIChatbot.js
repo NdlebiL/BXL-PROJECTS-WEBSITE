@@ -52,8 +52,28 @@ const AIChatbot = () => {
       response: "We offer 8 comprehensive services:\n\n1. Custom Websites (React/Next.js)\n2. Website Maintenance\n3. Web Applications\n4. Mobile Apps (React Native)\n5. Branding & Logos\n6. Local SEO & Google Ranking\n7. WhatsApp Automation\n8. Systems Maintenance\n\nWhich service interests you?"
     },
     pricing: {
-      keywords: ['price', 'cost', 'budget', 'quote', 'how much'],
-      response: "Our pricing varies based on project scope:\n\n• Custom Websites: From R5,000\n• Website Maintenance: From R1,500/month\n• Web Apps: From R15,000\n• Mobile Apps: From R25,000\n• Branding: From R3,000\n• SEO: From R2,500/month\n\nContact us for a detailed quote tailored to your needs!"
+      keywords: ['price', 'cost', 'budget', 'quote', 'how much', 'plan', 'package', 'tier', 'hybrid', '3-tier', 'payment plan'],
+      response: "We offer 3-Tier Hybrid Pricing (One-Off Build + Monthly Maintenance):\n\n💼 BASIC - R6,000 + R750/mo\n• Simple Website (5 pages)\n• Contact forms + Google Maps\n• Mobile responsive\n• Basic SEO\n• Security updates & backups\n• Perfect for: Guesthouses, restaurants, startups\n\n🏆 PRO (MOST POPULAR) - R15,000 + R2,250/mo\n• SAVE R3,000 on build!\n• Full Custom Website (10+ pages)\n• Booking/Quote Forms\n• WhatsApp Automation\n• Advanced Local SEO (#1 Google)\n• Monthly SEO + content updates\n• Perfect for: Transport, contractors, retail\n\n👑 PREMIUM - R28,000 + R4,250/mo\n• SAVE R7,000 on build!\n• Everything in Pro +\n• Custom Web App/Dashboards\n• Mobile App (React Native)\n• Complete Branding Package\n• Priority 2-hour response\n• Dedicated account manager\n• Perfect for: Agencies, logistics, government\n\n65% of clients choose PRO! Visit our Pricing page for full details."
+    },
+    basic: {
+      keywords: ['basic plan', 'basic package', 'r6000', '6000', 'r750', '750', 'small site', 'simple website'],
+      response: "BASIC PLAN - R6,000 + R750/mo\n\n📦 ONE-OFF BUILD (R6,000):\n✅ Simple Website (5 pages max)\n✅ Contact forms + Google Maps\n✅ Mobile responsive design\n✅ Basic Eastern Cape SEO\n\n🔧 MONTHLY MAINTENANCE (R750/mo):\n✅ Security updates & backups\n✅ Uptime monitoring (99.9%)\n✅ Minor content changes\n✅ Annual SEO refresh\n\n👥 Perfect for: Guesthouses, restaurants, startups\n\nReady to get started? Contact us or visit our Pricing page!"
+    },
+    pro: {
+      keywords: ['pro plan', 'pro package', 'r15000', '15000', 'r2250', '2250', 'popular', 'recommended', 'best plan'],
+      response: "🏆 PRO PLAN - R15,000 + R2,250/mo (MOST POPULAR!)\n\n📦 ONE-OFF BUILD (R15,000 - SAVE R3,000!):\n✅ Full Custom Website (10+ pages)\n✅ Booking/Quote Forms\n✅ WhatsApp Automation Integration\n✅ Advanced Local SEO (#1 Google)\n✅ GUTS Transport-style animations\n\n🔧 MONTHLY MAINTENANCE (R2,250/mo - SAVE R750!):\n✅ Everything in Basic +\n✅ Monthly SEO ranking + content\n✅ WhatsApp bot updates\n✅ Google My Business management\n✅ Performance reports\n\n👥 Perfect for: Transport, contractors, retail\n\n🎖️ 65% of our clients choose this plan! It's the perfect balance of features and value."
+    },
+    premium: {
+      keywords: ['premium plan', 'premium package', 'r28000', '28000', 'r4250', '4250', 'enterprise', 'full stack'],
+      response: "👑 PREMIUM PLAN - R28,000 + R4,250/mo (Enterprise Ready)\n\n📦 ONE-OFF BUILD (R28,000 - SAVE R7,000!):\n✅ Everything in Pro +\n✅ Custom Web Application/Dashboards\n✅ Mobile App (React Native)\n✅ Complete Branding Package\n✅ Advanced Animations (page flip)\n\n🔧 MONTHLY MAINTENANCE (R4,250/mo - SAVE R1,750!):\n✅ Everything in Pro +\n✅ Mobile app updates\n✅ Custom feature development\n✅ Priority 2-hour response\n✅ Dedicated account manager\n\n👥 Perfect for: Agencies, logistics, government contractors\n\nThis is our most comprehensive solution for businesses that need everything!"
+    },
+    payment: {
+      keywords: ['payment', 'pay', 'how to pay', 'payment method', 'payfast', 'card', 'eft'],
+      response: "Payment Options:\n\n💳 We accept:\n• Credit/Debit Cards\n• EFT Bank Transfer\n• PayFast (Secure Online Payment)\n\n📋 Payment Process:\n1. Choose your plan on our Pricing page\n2. Click the plan card to flip and see details\n3. Click 'Proceed to Payment' button\n4. Complete secure payment\n5. We'll contact you within 2 hours to start!\n\n💰 Payment Terms:\n• One-off build: 50% upfront, 50% on completion\n• Monthly maintenance: Billed monthly in advance\n\nNeed a custom quote? Contact us directly!"
+    },
+    maintenance: {
+      keywords: ['maintenance', 'maintain', 'monthly', 'ongoing', 'support', 'updates'],
+      response: "Monthly Maintenance Plans:\n\n🔧 BASIC (R750/mo):\n• Security updates & backups\n• Uptime monitoring (99.9%)\n• Minor content changes\n• Annual SEO refresh\n\n🔧 PRO (R2,250/mo):\n• Everything in Basic +\n• Monthly SEO ranking + content\n• WhatsApp bot updates\n• Google My Business management\n• Performance reports\n\n🔧 PREMIUM (R4,250/mo):\n• Everything in Pro +\n• Mobile app updates\n• Custom feature development\n• Priority 2-hour response\n• Dedicated account manager\n\nMaintenance ensures your site stays secure, fast, and ranking high on Google!"
     },
     contact: {
       keywords: ['contact', 'reach', 'email', 'phone', 'whatsapp', 'call'],
@@ -91,7 +111,7 @@ const AIChatbot = () => {
 
     // Check for thanks/goodbye
     if (lowerMessage.match(/(thank|thanks|thank you|thx|appreciate|grateful|bye|goodbye|see you)/)) {
-      return "You're very welcome! 😊 It was my pleasure assisting you today.\n\nIs there anything else I can help you with? Feel free to ask about:\n\n• Our Services\n• Pricing & Quotes\n• Portfolio Projects\n• Contact Information\n• The BXL Team\n\nI'm here whenever you need me!";
+      return "You're very welcome! 😊 It was my pleasure assisting you today.\n\nIs there anything else I can help you with? Feel free to ask about:\n\n• Our Pricing Plans (Basic, Pro, Premium)\n• Services & Features\n• Payment Methods\n• Portfolio Projects\n• Contact Information\n\nI'm here whenever you need me!";
     }
 
     // Check knowledge base

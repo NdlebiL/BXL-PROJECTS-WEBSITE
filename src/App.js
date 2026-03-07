@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import About from './pages/About';
 import Portfolio from './pages/Portfolio';
+import Pricing from './pages/Pricing';
 import Contact from './pages/Contact';
 import AIChatbot from './components/AIChatbot';
 import ScrollToTop from './components/ScrollToTop';
@@ -24,6 +25,7 @@ function App() {
           <div id="services"><Services /></div>
           <div id="about"><About /></div>
           <div id="portfolio"><Portfolio /></div>
+          <div id="pricing"><Pricing /></div>
           <div id="contact"><Contact /></div>
         </div>
         <Footer />

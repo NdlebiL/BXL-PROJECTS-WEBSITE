@@ -45,7 +45,7 @@ const Contact = () => {
       });
 
       setTimeout(() => {
-        window.open('https://wa.me/+27710000000?text=Hi%20BXL%20Projects!%20I%20just%20submitted%20a%20quote%20request', '_blank');
+        window.open('https://wa.me/+27798031304?text=Hi%20BXL%20Projects!%20I%20just%20submitted%20a%20quote%20request', '_blank');
       }, 2000);
     } catch (error) {
       console.error('Error sending email:', error);
@@ -56,18 +56,17 @@ const Contact = () => {
   };
 
   const services = [
-    'React/Next.js App',
-    'Website Development',
-    'API Integration',
-    'SEO/Google Setup',
-    'Architecture Advice',
+    'Basic - Website + Basic SEO (R6k)',
+    'Pro - Website + WhatsApp + SEO (R15k)',
+    'Premium - Web App + Mobile App (R22k)',
+    'Private - Custom Enterprise (Quote)',
   ];
 
   const budgetRanges = [
-    'R5,000 - R10,000',
-    'R10,000 - R25,000',
-    'R25,000 - R50,000',
-    'Custom Quote',
+    'R6,000 (Basic)',
+    'R15,000 (Pro)',
+    'R22,000 (Premium)',
+    'R35k+ (Private/Custom)',
   ];
 
   return (
@@ -101,9 +100,10 @@ const Contact = () => {
             
             {/* Form Card - Large */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ type: "spring", stiffness: 80, damping: 25, mass: 1.2 }}
               className="md:col-span-8 bg-white rounded-3xl p-6 md:p-8"
             >
               {submitSuccess ? (
@@ -270,7 +270,7 @@ const Contact = () => {
               >
                 <Phone className="w-12 h-12 text-white mx-auto mb-4" />
                 <div className="text-xs font-montserrat text-green-200 uppercase tracking-widest mb-2">WhatsApp</div>
-                <div className="text-white font-opensans text-sm">+27 71 000 0000</div>
+                <div className="text-white font-opensans text-sm">+27 79 803 1304</div>
               </motion.div>
 
               <motion.div
@@ -303,11 +303,12 @@ const Contact = () => {
 
             {/* WhatsApp CTA Card */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.6 }}
+              initial={{ opacity: 0, x: 100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ type: "spring", stiffness: 80, damping: 25, mass: 1.2 }}
               className="md:col-span-5 bg-gradient-to-br from-green-600 to-green-800 rounded-3xl p-8 flex flex-col justify-center items-center text-center cursor-pointer hover:scale-105 transition-transform"
-              onClick={() => window.open('https://wa.me/+27710000000', '_blank')}
+              onClick={() => window.open('https://wa.me/+27798031304', '_blank')}
             >
               <MessageSquare className="w-16 h-16 text-white mb-4" />
               <div className="text-white font-montserrat font-bold text-2xl mb-2">Chat on WhatsApp</div>

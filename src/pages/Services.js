@@ -140,9 +140,11 @@ const Services = () => {
             {services.map((service, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 + index * 0.1, ease: "easeOut" }}
+                id={service.title.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ type: "spring", stiffness: 80, damping: 25, mass: 1.2 }}
                 className={`bg-gradient-to-br ${service.color} rounded-3xl p-6 md:p-8`}
               >
                 <service.icon className="w-12 h-12 text-white mb-4" />
@@ -182,7 +184,7 @@ const Services = () => {
               Let's discuss how we can help bring your digital vision to life
             </p>
             <button 
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
               className="bg-white text-blue-600 font-montserrat font-bold px-10 py-4 rounded-full hover:bg-gray-100 transition-all"
             >
               Get a Free Quote

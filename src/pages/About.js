@@ -85,9 +85,10 @@ const About = () => {
             {values.map((value, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + index * 0.1 }}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ type: "spring", stiffness: 80, damping: 25, mass: 1.2 }}
                 className="md:col-span-3 bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-3xl p-6 text-center"
               >
                 <value.icon className="w-10 h-10 text-blue-400 mx-auto mb-3" />
@@ -165,9 +166,9 @@ const About = () => {
                     transition={{ 
                       delay: index * 0.2, 
                       type: "spring", 
-                      stiffness: 40, 
+                      stiffness: 80, 
                       damping: 25,
-                      mass: 2
+                      mass: 1.2
                     }}
                     className="bg-white bg-opacity-10 backdrop-blur-sm border border-gray-700 rounded-2xl p-6"
                   >

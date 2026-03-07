@@ -249,7 +249,7 @@ const Portfolio = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.6 }}
               className="md:col-span-4 bg-gradient-to-br from-green-600 to-green-800 rounded-3xl p-6 md:p-8 flex flex-col justify-center items-center text-center cursor-pointer hover:scale-105 transition-transform"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
             >
               <Zap className="w-12 h-12 text-white mb-4" />
               <div className="text-white font-montserrat font-bold text-2xl mb-2">Start Your Project</div>

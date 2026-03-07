@@ -85,7 +85,7 @@ const Home = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.35, ease: "easeOut" }}
-                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
                   className="bg-blue-600 hover:bg-blue-700 text-white font-montserrat font-bold px-8 py-4 rounded-full transition-all inline-flex items-center gap-2 w-fit"
                 >
                   Start Project <ArrowRight size={20} />
@@ -98,7 +98,7 @@ const Home = () => {
               key={`stats1-${animationKey}`}
               initial={{ opacity: 0, x: 200 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.8, delay: 0.05 }}
+              transition={{ type: "spring", stiffness: 80, damping: 25, mass: 1.2, delay: 0.05 }}
               className="md:col-span-4 bg-blue-600 rounded-3xl p-6 md:p-8 flex flex-col justify-between"
               style={{ minHeight: '200px' }}
             >
@@ -116,7 +116,7 @@ const Home = () => {
               key={`quote-${animationKey}`}
               initial={{ opacity: 0, x: -200 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.8, delay: 0.1 }}
+              transition={{ type: "spring", stiffness: 80, damping: 25, mass: 1.2, delay: 0.1 }}
               className="md:col-span-4 bg-white rounded-3xl p-6 md:p-8 relative"
               style={{ minHeight: '200px' }}
             >
@@ -134,7 +134,7 @@ const Home = () => {
               key={`stats2-${animationKey}`}
               initial={{ opacity: 0, x: 200 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.8, delay: 0.15 }}
+              transition={{ type: "spring", stiffness: 80, damping: 25, mass: 1.2, delay: 0.15 }}
               className="md:col-span-4 bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-3xl p-6 md:p-8"
               style={{ minHeight: '200px' }}
             >
@@ -150,7 +150,7 @@ const Home = () => {
               key={`cta-${animationKey}`}
               initial={{ opacity: 0, x: -200 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.8, delay: 0.2 }}
+              transition={{ type: "spring", stiffness: 80, damping: 25, mass: 1.2, delay: 0.2 }}
               className="md:col-span-4 bg-gradient-to-br from-purple-600 to-blue-600 rounded-3xl p-6 md:p-8 flex flex-col justify-between cursor-pointer hover:scale-105 transition-transform"
               onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
               style={{ minHeight: '200px' }}
@@ -167,7 +167,7 @@ const Home = () => {
               key={`services-${animationKey}`}
               initial={{ opacity: 0, x: 200 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.8, delay: 0.25 }}
+              transition={{ type: "spring", stiffness: 80, damping: 25, mass: 1.2, delay: 0.25 }}
               className="md:col-span-6 bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-3xl p-6 md:p-8"
             >
               <div className="text-xs font-montserrat text-gray-500 uppercase tracking-widest mb-6">What We Do</div>
@@ -178,6 +178,10 @@ const Home = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.7 + i * 0.1, ease: "easeOut" }}
+                    onClick={() => {
+                      const serviceId = service.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and');
+                      window.location.href = `/services#${serviceId}`;
+                    }}
                     className="flex items-center gap-3 text-white font-opensans hover:text-blue-400 transition-colors cursor-pointer"
                   >
                     <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
@@ -192,7 +196,7 @@ const Home = () => {
               key={`clients-${animationKey}`}
               initial={{ opacity: 0, x: -200 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.8, delay: 0.3 }}
+              transition={{ type: "spring", stiffness: 80, damping: 25, mass: 1.2, delay: 0.3 }}
               className="md:col-span-3 bg-gray-800 rounded-3xl p-6 md:p-8 flex flex-col justify-center items-center text-center"
             >
               <Users className="w-12 h-12 text-blue-400 mb-4" />
@@ -207,7 +211,7 @@ const Home = () => {
               key={`location-${animationKey}`}
               initial={{ opacity: 0, x: 200 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.8, delay: 0.35 }}
+              transition={{ type: "spring", stiffness: 80, damping: 25, mass: 1.2, delay: 0.35 }}
               className="md:col-span-3 bg-gradient-to-br from-blue-900 to-blue-950 rounded-3xl p-6 md:p-8 flex flex-col justify-center"
             >
               <div className="text-xs font-montserrat text-blue-300 uppercase tracking-widest mb-2">Based in</div>
