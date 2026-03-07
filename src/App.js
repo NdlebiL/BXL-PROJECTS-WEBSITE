@@ -6,8 +6,9 @@ import Services from './pages/Services';
 import About from './pages/About';
 import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
-import FloatingWhatsApp from './components/FloatingWhatsApp';
+import AIChatbot from './components/AIChatbot';
 import ScrollToTop from './components/ScrollToTop';
+import Footer from './components/Footer';
 
 function App() {
   useEffect(() => {
@@ -25,7 +26,8 @@ function App() {
           <div id="portfolio"><Portfolio /></div>
           <div id="contact"><Contact /></div>
         </div>
-        <FloatingWhatsApp />
+        <Footer />
+        <AIChatbot />
         <ScrollToTop />
       </div>
     </Router>

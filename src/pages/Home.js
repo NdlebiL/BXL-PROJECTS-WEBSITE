@@ -40,10 +40,6 @@ const Home = () => {
       className="relative"
     >
       <section className="relative min-h-screen overflow-hidden pt-8" style={{ background: '#000000' }}>
-        <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, opacity: 0.3 }}>
-          <DarkVeil hueShift={0} noiseIntensity={0} scanlineIntensity={0} speed={1.00} scanlineFrequency={0} warpAmount={0} />
-        </div>
-
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Bento Grid Layout */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
@@ -53,7 +49,7 @@ const Home = () => {
               key={`hero-${animationKey}`}
               initial={{ opacity: 0, x: -200 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.1, ease: "easeOut" }}
+              transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.8 }}
               className="md:col-span-8 bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-3xl p-8 md:p-12 relative overflow-hidden"
               style={{ minHeight: '400px' }}
             >
@@ -62,7 +58,7 @@ const Home = () => {
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+                  transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
                   className="font-montserrat font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-4"
                   style={{ lineHeight: '1.1', letterSpacing: '-0.02em' }}
                 >
@@ -71,7 +67,7 @@ const Home = () => {
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+                  transition={{ duration: 0.4, delay: 0.25, ease: "easeOut" }}
                   className="text-gray-400 font-opensans text-lg md:text-xl mb-2"
                 >
                   Bukhanye Xcellence Legacy
@@ -79,7 +75,7 @@ const Home = () => {
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+                  transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
                   className="text-white text-base md:text-lg mb-8"
                   style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic' }}
                 >
@@ -88,7 +84,7 @@ const Home = () => {
                 <motion.button
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+                  transition={{ duration: 0.4, delay: 0.35, ease: "easeOut" }}
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                   className="bg-blue-600 hover:bg-blue-700 text-white font-montserrat font-bold px-8 py-4 rounded-full transition-all inline-flex items-center gap-2 w-fit"
                 >
@@ -102,7 +98,7 @@ const Home = () => {
               key={`stats1-${animationKey}`}
               initial={{ opacity: 0, x: 200 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+              transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.8, delay: 0.05 }}
               className="md:col-span-4 bg-blue-600 rounded-3xl p-6 md:p-8 flex flex-col justify-between"
               style={{ minHeight: '200px' }}
             >
@@ -120,7 +116,7 @@ const Home = () => {
               key={`quote-${animationKey}`}
               initial={{ opacity: 0, x: -200 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+              transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.8, delay: 0.1 }}
               className="md:col-span-4 bg-white rounded-3xl p-6 md:p-8 relative"
               style={{ minHeight: '200px' }}
             >
@@ -138,7 +134,7 @@ const Home = () => {
               key={`stats2-${animationKey}`}
               initial={{ opacity: 0, x: 200 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+              transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.8, delay: 0.15 }}
               className="md:col-span-4 bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-3xl p-6 md:p-8"
               style={{ minHeight: '200px' }}
             >
@@ -154,7 +150,7 @@ const Home = () => {
               key={`cta-${animationKey}`}
               initial={{ opacity: 0, x: -200 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+              transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.8, delay: 0.2 }}
               className="md:col-span-4 bg-gradient-to-br from-purple-600 to-blue-600 rounded-3xl p-6 md:p-8 flex flex-col justify-between cursor-pointer hover:scale-105 transition-transform"
               onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
               style={{ minHeight: '200px' }}
@@ -171,12 +167,12 @@ const Home = () => {
               key={`services-${animationKey}`}
               initial={{ opacity: 0, x: 200 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+              transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.8, delay: 0.25 }}
               className="md:col-span-6 bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-3xl p-6 md:p-8"
             >
               <div className="text-xs font-montserrat text-gray-500 uppercase tracking-widest mb-6">What We Do</div>
               <div className="space-y-4">
-                {['React/Next.js Development', 'Custom API Solutions', 'WhatsApp Automation', 'SEO & Business Setup'].map((service, i) => (
+                {['Custom Websites', 'Web Applications', 'Mobile Apps', 'WhatsApp Automation', 'Local SEO & Ranking', 'Website Maintenance', 'Branding & Logos', 'Systems Maintenance'].map((service, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, x: -20 }}
@@ -196,7 +192,7 @@ const Home = () => {
               key={`clients-${animationKey}`}
               initial={{ opacity: 0, x: -200 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.7, ease: "easeOut" }}
+              transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.8, delay: 0.3 }}
               className="md:col-span-3 bg-gray-800 rounded-3xl p-6 md:p-8 flex flex-col justify-center items-center text-center"
             >
               <Users className="w-12 h-12 text-blue-400 mb-4" />
@@ -211,7 +207,7 @@ const Home = () => {
               key={`location-${animationKey}`}
               initial={{ opacity: 0, x: 200 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
+              transition={{ type: "spring", stiffness: 100, damping: 20, mass: 0.8, delay: 0.35 }}
               className="md:col-span-3 bg-gradient-to-br from-blue-900 to-blue-950 rounded-3xl p-6 md:p-8 flex flex-col justify-center"
             >
               <div className="text-xs font-montserrat text-blue-300 uppercase tracking-widest mb-2">Based in</div>

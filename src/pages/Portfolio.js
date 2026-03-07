@@ -30,10 +30,10 @@ const Portfolio = () => {
       images: 2,
     },
     {
-      title: 'Mthatha Shuttle Landing',
-      description: 'SEO-optimized landing page with Google Search Console integration',
-      tech: ['Next.js', 'SEO', 'Schema.org', 'Google Console'],
-      link: 'https://example.com',
+      title: 'Travel Agency Website',
+      description: 'Modern travel booking platform - Coming Soon',
+      tech: ['Next.js', 'React', 'Tailwind', 'Booking System'],
+      link: '#',
       images: 2,
     },
   ];
@@ -249,7 +249,7 @@ const Portfolio = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.6 }}
               className="md:col-span-4 bg-gradient-to-br from-green-600 to-green-800 rounded-3xl p-6 md:p-8 flex flex-col justify-center items-center text-center cursor-pointer hover:scale-105 transition-transform"
-              onClick={() => window.location.href = '/contact'}
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               <Zap className="w-12 h-12 text-white mb-4" />
               <div className="text-white font-montserrat font-bold text-2xl mb-2">Start Your Project</div>
