@@ -1,14 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Send } from 'lucide-react';
+import { MessageCircle, X, Send, AlertTriangle } from 'lucide-react';
+import { useErrorHandler } from '../hooks/useErrorHandling';
+import { safeAsync } from '../utils/errorUtils';
 
 const AIChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { text: "Hi! I'm BXL Assistant. How can I help you today?", sender: 'bot' }
+    { text: "Hi! I'm BXL Assistant. How can I help you today?", sender: 'bot', id: Date.now() }
   ]);
   const [input, setInput] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
+  const { error, handleError, clearError } = useErrorHandler();
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -115,7 +119,7 @@ const AIChatbot = () => {
     }
 
     // Check knowledge base
-    for (const [key, data] of Object.entries(knowledgeBase)) {
+    for (const [, data] of Object.entries(knowledgeBase)) {
       if (data.keywords.some(keyword => lowerMessage.includes(keyword))) {
         return data.response;
       }
@@ -125,17 +129,44 @@ const AIChatbot = () => {
     return "I'd be happy to help! I can provide information about:\n\n• Our Services\n• Pricing & Quotes\n• Portfolio & Projects\n• Contact Information\n• Project Timelines\n• Technologies We Use\n\nWhat would you like to know more about?";
   };
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!input.trim()) return;
 
-    const userMessage = { text: input, sender: 'user' };
+    const userMessage = { text: input, sender: 'user', id: Date.now() };
     setMessages(prev => [...prev, userMessage]);
+    const currentInput = input;
     setInput('');
+    setIsTyping(true);
+    clearError();
 
-    setTimeout(() => {
-      const botResponse = { text: getBotResponse(input), sender: 'bot' };
-      setMessages(prev => [...prev, botResponse]);
-    }, 500);
+    try {
+      await safeAsync(
+        async () => {
+          // Simulate processing delay
+          await new Promise(resolve => setTimeout(resolve, 500));
+          
+          const botResponse = { 
+            text: getBotResponse(currentInput), 
+            sender: 'bot', 
+            id: Date.now() 
+          };
+          
+          setMessages(prev => [...prev, botResponse]);
+        },
+        null,
+        'Chatbot Response'
+      );
+    } catch (error) {
+      handleError(error, 'Chatbot');
+      const errorMessage = {
+        text: "I'm having trouble processing your message right now. Please try again or contact us directly via WhatsApp.",
+        sender: 'bot',
+        id: Date.now()
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsTyping(false);
+    }
   };
 
   return (
@@ -186,11 +217,33 @@ const AIChatbot = () => {
 
             {/* Messages */}
             <div className="flex-1 overflow-y-auto p-4 bg-gray-50">
-              {messages.map((msg, index) => (
+              {error && (
+                <div className="mb-4 bg-red-50 border border-red-200 rounded-lg p-3 flex items-start gap-2">
+                  <AlertTriangle className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-red-800 text-xs font-medium">{error.message}</p>
+                    <button
+                      onClick={() => window.open('https://wa.me/+27798031304', '_blank')}
+                      className="text-red-600 hover:text-red-800 text-xs underline mt-1"
+                    >
+                      Contact us directly →
+                    </button>
+                  </div>
+                </div>
+              )}
+              
+              {messages.map((msg) => (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  key={msg.id}
+                  initial={{ opacity: 0, x: msg.sender === 'user' ? 50 : -50, y: 20 }}
+                  animate={{ opacity: 1, x: 0, y: 0 }}
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 60, 
+                    damping: 20,
+                    mass: 0.8,
+                    duration: 0.6
+                  }}
                   className={`mb-4 flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
@@ -204,6 +257,23 @@ const AIChatbot = () => {
                   </div>
                 </motion.div>
               ))}
+              
+              {isTyping && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-4 flex justify-start"
+                >
+                  <div className="bg-white text-gray-800 rounded-2xl rounded-bl-none shadow-sm p-3">
+                    <div className="flex gap-1">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+              
               <div ref={messagesEndRef} />
             </div>
 
@@ -220,7 +290,8 @@ const AIChatbot = () => {
                 />
                 <button
                   onClick={handleSend}
-                  className="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition-all"
+                  disabled={isTyping || !input.trim()}
+                  className="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send size={20} />
                 </button>

@@ -38,7 +38,7 @@ const Footer = () => {
           <div className="text-center md:text-left">
             <h3 className="text-white font-montserrat font-bold text-lg mb-4">Quick Links</h3>
             <div className="space-y-2 flex flex-col items-center md:items-start">
-              {['Home', 'Services', 'About', 'Portfolio', 'Pricing', 'Contact'].map((link) => (
+              {['Home', 'Services', 'About', 'Portfolio', 'Contact'].map((link) => (
                 <button
                   key={link}
                   onClick={() => document.getElementById(link.toLowerCase())?.scrollIntoView({ behavior: 'smooth' })}

@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
-import { Send, CheckCircle, Mail, Phone, MapPin, MessageSquare } from 'lucide-react';
+import { Send, CheckCircle, Mail, Phone, MapPin, MessageSquare, AlertTriangle } from 'lucide-react';
+import { useErrorHandler } from '../hooks/useErrorHandling';
 
 const Contact = () => {
   const formRef = useRef();
+  const { error, handleError, clearError } = useErrorHandler();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -16,6 +18,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,8 +27,21 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError(null);
+    clearError();
 
     try {
+      // Validate form data
+      if (!formData.name.trim() || !formData.email.trim() || !formData.service) {
+        throw new Error('Please fill in all required fields');
+      }
+
+      // Validate email format
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        throw new Error('Please enter a valid email address');
+      }
+
       await emailjs.sendForm(
         'YOUR_SERVICE_ID',
         'YOUR_TEMPLATE_ID',
@@ -49,7 +65,21 @@ const Contact = () => {
       }, 2000);
     } catch (error) {
       console.error('Error sending email:', error);
-      alert('Failed to send message. Please try WhatsApp instead.');
+      
+      let errorMessage = 'Failed to send message. Please try again.';
+      
+      if (error.message.includes('network') || error.message.includes('fetch')) {
+        errorMessage = 'Network error. Please check your connection and try again.';
+      } else if (error.message.includes('required fields')) {
+        errorMessage = error.message;
+      } else if (error.message.includes('email')) {
+        errorMessage = error.message;
+      } else if (error.text && error.text.includes('EmailJS')) {
+        errorMessage = 'Email service temporarily unavailable. Please use WhatsApp instead.';
+      }
+      
+      setSubmitError(errorMessage);
+      handleError(error, 'Contact Form');
     } finally {
       setIsSubmitting(false);
     }
@@ -117,6 +147,21 @@ const Contact = () => {
                   </p>
                 </div>
               ) : (
+                <>
+                  {submitError && (
+                    <div className="mb-6 bg-red-50 border border-red-200 rounded-xl p-4 flex items-start gap-3">
+                      <AlertTriangle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <p className="text-red-800 font-medium text-sm">{submitError}</p>
+                        <button
+                          onClick={() => window.open('https://wa.me/+27798031304', '_blank')}
+                          className="text-red-600 hover:text-red-800 text-sm underline mt-1"
+                        >
+                          Try WhatsApp instead →
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -246,6 +291,7 @@ const Contact = () => {
                     )}
                   </button>
                 </form>
+                </>
               )}
             </motion.div>
 

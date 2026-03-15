@@ -56,16 +56,16 @@ const About = () => {
             >
               <div className="text-xs font-montserrat text-gray-500 uppercase tracking-widest mb-4">Our Story</div>
               <h2 className="text-2xl md:text-3xl font-montserrat font-bold text-gray-900 mb-4">
-                Building Digital Excellence
+                From East London garage to global code warriors.
               </h2>
               <p className="text-gray-600 font-opensans text-base md:text-lg leading-relaxed mb-4">
-                BXL Projects was founded with a mission to bring world-class digital solutions to businesses in the Eastern Cape. 
-                Based in East London, South Africa, we specialize in React/Next.js development, custom API solutions, WhatsApp automation, 
-                and SEO optimization.
+                BXL Projects started when three coders bet everything on one radical idea: build digital empires for businesses ignored by Joburg agencies.
               </p>
-              <p className="text-gray-600 font-opensans text-base md:text-lg leading-relaxed">
-                Our name, Bukhanye Xcellence Legacy, reflects our commitment to creating lasting impact through exceptional work. 
-                We believe in building solutions that not only meet today's needs but scale for tomorrow's growth.
+              <p className="text-gray-600 font-opensans text-base md:text-lg leading-relaxed mb-4">
+                Bukhanye Xcellence Legacy isn't just a name it's our promise. Every line of code creates lasting legends. We don't build websites.
+              </p>
+              <p className="text-gray-600 font-opensans text-base md:text-lg leading-relaxed font-bold">
+                We build futures.
               </p>
             </motion.div>
 

@@ -184,7 +184,7 @@ const Services = () => {
               Let's discuss how we can help bring your digital vision to life
             </p>
             <button 
-              onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               className="bg-white text-blue-600 font-montserrat font-bold px-10 py-4 rounded-full hover:bg-gray-100 transition-all"
             >
               Get a Free Quote

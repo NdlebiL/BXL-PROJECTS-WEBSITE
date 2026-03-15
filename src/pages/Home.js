@@ -85,7 +85,7 @@ const Home = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.35, ease: "easeOut" }}
-                  onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                   className="bg-blue-600 hover:bg-blue-700 text-white font-montserrat font-bold px-8 py-4 rounded-full transition-all inline-flex items-center gap-2 w-fit"
                 >
                   Start Project <ArrowRight size={20} />
